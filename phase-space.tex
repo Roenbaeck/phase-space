@@ -1,0 +1,1159 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{assumption}{Assumption}[section]
+
+\title{Phase-Space Seams: Hessian Geometry and the Invariant First Variation of Quartic Sublevel Sets}
+\author{Lars R\"onnb\"ack \\
+        Stockholm University \\
+        \texttt{lars@uptochange.com}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We introduce \emph{phase-space seams}, a scalar-first framework in which a single
+real-valued scalar field \(s\) on \(\mathbb{R}^{2d}\) generates local geometric data (via a
+Hessian rule) and a family of sublevel sets.
+
+Our main general result is an invariant first-variation formula in \(\mathbb{R}^n\): to first order,
+the volume of small sublevel sets \(\{s\le \varepsilon\}\) depends on the quartic jet only through the
+unique \(O(n)\)-scalar contraction (the double trace) of the 4-jet tensor. For the quartic sublevel set
+\(\{s_4\le 1/2\}\) we also show a universality statement: normalisability of the model density
+\(\exp(-s_4)\) forces positivity of the corresponding first-order correction coefficient.
+
+In particular, for the quadratic seam
+\[
+s(x,p) = \frac{x^2}{2\sigma_x^2} + \frac{p^2}{2\sigma_p^2},
+\]
+with positive width parameters \(\sigma_x,\sigma_p\). Its sublevel set \(\{s\le 1/2\}\) is
+an ellipsoid whose Lebesgue volume is
+\(\frac{\pi^d}{d!}\prod_i\sigma_{x_i}\sigma_{p_i}\).
+
+We then study \emph{quartic seams} obtained by retaining the full fourth-order Taylor jet,
+including the cross-term \(x^2p^2\). A coordinate-invariant 4-jet contraction must
+include all fourth-derivative components; the cross-coupling contributes with a
+coefficient \(1/8\), distinct from the diagonal coefficient \(3/16\), reflecting universal
+angular integrals.
+
+Finally, for the model density \(\rho\propto\exp(-s_4)\) we compute true second moments to
+first order in the quartic strength \(\lambda\), making explicit that the moments of
+\(\rho\) generally differ from the jet parameters \(\sigma_x,\sigma_p\) in non-Gaussian
+models.
+\end{abstract}
+
+%------------------------------------------------------------------
+\section{Introduction}
+%------------------------------------------------------------------
+
+Geometry is often presented as a structure postulated \emph{a priori}. Here we adopt the
+complementary viewpoint: begin with a base space and a real-valued scalar field (the
+\emph{seam}) and let an explicit local rule generate the geometric data. In this note we
+apply this scalar-first philosophy to classical phase space \(\mathbb{R}^{2d}\) equipped
+with the standard symplectic coordinates \((x,p)\).
+
+From the viewpoint of information geometry, the central construction is Hessian: when a
+seam is interpreted as a negative log-density, its Hessian is the observed-information
+matrix, and its expectation recovers the Fisher information metric under standard
+regularity hypotheses \cite{Rao1945,AmariNagaoka2000}.
+
+More generally, in the standard affine coordinates on \(\mathbb{R}^{2d}\), the Hessian rule produces a
+Hessian metric in the sense of Hessian manifold theory; see, e.g., \cite{Shima2007}.
+
+We focus first on the simplest non-trivial seams --- quadratic forms --- and compute the
+Lebesgue volume of their sublevel sets explicitly. We then extend this to the full
+quartic seam and obtain a first-order area correction, correcting an incompleteness in
+the diagonal-only treatment: the cross-coupling term \(x^2 p^2\) must be included in any
+coordinate-invariant formulation, and it enters with a universal weight dictated by
+angular integrals. We also show that normalisability of the model density \(\exp(-s_4)\)
+forces positivity of the first-order correction coefficient.
+
+The construction is self-contained and uses only elementary multivariable calculus and
+the AM-GM inequality. We outline immediate computational applications and sketch the
+natural multi-mode generalisation in dimension \(d > 1\).
+
+%------------------------------------------------------------------
+\section{Background and Scope}
+%------------------------------------------------------------------
+
+The formalism in this note is geometric: it starts from a scalar field \(s\) on phase
+space and derives objects such as a Hessian metric and level-set geometry. Connections
+to quantum mechanics can be made by choosing a phase-space representation (e.g. a Husimi
+\(Q\)-function) and identifying \(s\) with a log-density; we use this as motivation and
+do not assume that arbitrary seam level sets are constrained directly by the canonical
+commutation relation.
+
+\paragraph{Phase-space representations.}
+Quantum states admit phase-space descriptions such as the Wigner function, which can be
+negative and therefore cannot globally be written as \(\exp(-s)\) with real \(s\)
+\cite{Wigner1932,Hillery1984}. Positive phase-space distributions are provided by the Husimi
+\(Q\)-function (a Gaussian smoothing of the Wigner function) \cite{Husimi1940,Schleich2001}. If one
+chooses to interpret a seam as
+\[
+s(x,p) = -\log Q(x,p) + \text{const},
+\]
+then \(\exp(-s)\) is normalisable and the seam parameters can be related to the
+covariance of the Husimi distribution.
+
+\paragraph{Parameters versus moments.}
+The symbols \(\sigma_x,\sigma_p\) in this manuscript denote quadratic width parameters
+used to normalise coordinates \(u=x/\sigma_x\), \(v=p/\sigma_p\). For non-Gaussian seams,
+the true moments computed from the model density \(\propto\exp(-s_4)\) satisfy
+\(\Delta x\neq \sigma_x\) and \(\Delta p\neq\sigma_p\) in general; an explicit
+perturbative computation is given in Section~\ref{subsec:true-variances}.
+
+\paragraph{Uncertainty as motivation.}
+For Gaussian states, the Robertson--Schr\"odinger inequality
+\cite{Robertson1929,Schrodinger1930} can be re-expressed as a minimal-area statement for
+the corresponding covariance ellipse, which coincides with a quadratic seam level set.
+For general non-Gaussian seams, there is no axiom of quantum mechanics that directly
+constrains the Lebesgue area of an arbitrary Taylor-level set \(\{s\le 1/2\}\). When we
+use a quantum-motivated area floor (Assumption~\ref{assump:area}) below, it should be
+read as a modelling hypothesis. For symplectic-geometric context, one may compare with
+de Gosson's \emph{quantum blobs}: minimal phase-space ellipsoids compatible with uncertainty (up to
+conventions) \cite{deGosson2006}.
+
+\paragraph{Relation to information geometry.}
+Defining a Riemannian metric from a log-density is closely related to the Fisher
+information metric \cite{Rao1945,AmariNagaoka2000}. Our metric is the pointwise Hessian
+of \(s\); taking expectations of this Hessian under \(\exp(-s)\) yields the usual Fisher
+information matrix for location parameters.
+
+%------------------------------------------------------------------
+\section{The Phase-Space Seam}
+%------------------------------------------------------------------
+
+Let \(\mathbb{R}^{2d}\) be equipped with coordinates
+\((x,p) = (x_1,\dots,x_d,p_1,\dots,p_d)\). For fixed positive parameters
+\(\sigma_x = (\sigma_{x_1},\dots,\sigma_{x_d})\) and
+\(\sigma_p = (\sigma_{p_1},\dots,\sigma_{p_d})\) we define the \emph{phase-space seam} by
+\begin{equation}
+s(x,p) := \sum_{i=1}^d \left(
+  \frac{x_i^2}{2\sigma_{x_i}^2} + \frac{p_i^2}{2\sigma_{p_i}^2}
+\right).
+\label{eq:seam-def}
+\end{equation}
+When all widths are equal (\(\sigma_{x_i}\equiv\sigma_x\),
+\(\sigma_{p_i}\equiv\sigma_p\)) this reduces to the isotropic form
+\[
+s(x,p) = \frac{|x|^2}{2\sigma_x^2} + \frac{|p|^2}{2\sigma_p^2}.
+\]
+In the geometric development below, \(\sigma_{x_i}\) and \(\sigma_{p_i}\) are treated as
+positive scale parameters. When one chooses to identify the quadratic seam with the
+negative log-density of a Gaussian quantum phase-space distribution, these parameters
+can be matched to physical standard deviations, in which case they obey the Heisenberg
+uncertainty relation
+\begin{equation}
+\sigma_{x_i} \sigma_{p_i} \ge \frac{\hbar}{2} \qquad \text{for each } i=1,\dots,d.
+\label{eq:heisenberg-constraint}
+\end{equation}
+
+%------------------------------------------------------------------
+\section{The Hessian Rule and Induced Geometry}
+%------------------------------------------------------------------
+
+\begin{definition}[Hessian Rule]
+Given a twice-differentiable seam \(s:\mathbb{R}^{2d}\to\mathbb{R}\), the \emph{Hessian
+rule} assigns to \(s\) the symmetric bilinear form given by its second derivatives,
+\[
+g_{ij} = \frac{\partial^2 s}{\partial q^i \partial q^j}, \qquad q = (x,p).
+\]
+If \(g\) is positive definite it defines a Riemannian metric on \(\mathbb{R}^{2d}\).
+\end{definition}
+
+\begin{remark}[Relation to Fisher information geometry]
+If one interprets \(s\) as a negative log-density, then the Hessian \(\partial_i\partial_j s\)
+is the \emph{observed information} matrix. Taking the expectation of this Hessian under the
+corresponding density yields the Fisher information matrix for location parameters under mild
+regularity conditions. This places the Hessian rule in close proximity to standard information
+geometry \cite{Rao1945,AmariNagaoka2000}.
+\end{remark}
+
+Applying the Hessian rule to the phase-space seam \eqref{eq:seam-def} yields the
+constant diagonal metric
+\begin{equation}
+g = \operatorname{diag}\Bigl(
+  \tfrac{1}{\sigma_{x_1}^2},\dots,\tfrac{1}{\sigma_{x_d}^2},
+  \tfrac{1}{\sigma_{p_1}^2},\dots,\tfrac{1}{\sigma_{p_d}^2}
+\Bigr).
+\label{eq:hessian-metric}
+\end{equation}
+Its inverse is likewise diagonal with entries \(\sigma_{x_i}^2\) and \(\sigma_{p_i}^2\).
+Because the second derivatives are constant, the Christoffel symbols vanish identically
+and the Riemannian curvature tensor of \(g\) is zero everywhere. The geometry is
+therefore flat, yet non-Euclidean: it is a simple rescaling of the standard Euclidean
+metric with different stretch factors along the position and momentum axes.
+
+The level sets \(\{ (x,p) \mid s(x,p) = c \}\) for \(c>0\) are ellipsoids. In the
+isotropic case the Lebesgue area (or \(2d\)-volume) enclosed by the level set \(s=1/2\) is
+\[
+A = \frac{\pi^d}{d!}\prod_{i=1}^d \sigma_{x_i}\sigma_{p_i}.
+\]
+Imposing the scale constraint \eqref{eq:heisenberg-constraint} on each pair
+therefore forces
+\begin{equation}
+A \ge \frac{\pi^d}{d!} \Bigl(\frac{\hbar}{2}\Bigr)^d,
+\label{eq:minimal-area}
+\end{equation}
+with equality if and only if \(\sigma_{x_i}\sigma_{p_i} = \hbar/2\) for all \(i\).
+
+%------------------------------------------------------------------
+\section{A Minimal-Area Constraint for Quadratic Seams}
+%------------------------------------------------------------------
+
+\begin{theorem}[Quadratic sublevel-set volume under a scale constraint]
+Let \(s\) be any phase-space seam of the quadratic form \eqref{eq:seam-def}. The
+Lebesgue volume of the sublevel set \(\{s\le 1/2\}\) satisfies
+\[
+\operatorname{Vol}_{\mathrm{Leb}}\bigl(\{s\le 1/2\}\bigr) \ge \frac{\pi^d}{d!}\Bigl(\frac{\hbar}{2}\Bigr)^d,
+\]
+with equality when equality holds in \eqref{eq:heisenberg-constraint} for every pair.
+\end{theorem}
+
+\begin{proof}
+The sublevel set \(\{s\le 1/2\}\) is the ellipsoid
+\[
+\sum_{i=1}^d \Bigl(
+  \frac{x_i^2}{\sigma_{x_i}^2} + \frac{p_i^2}{\sigma_{p_i}^2}
+\Bigr) \le 1.
+\]
+The Lebesgue volume of a \(2d\)-dimensional ellipsoid with semi-axes
+\(\sigma_{x_i}\) and \(\sigma_{p_i}\) is \(\frac{\pi^d}{d!}\prod_i \sigma_{x_i}\sigma_{p_i}\).
+The scale constraint \(\sigma_{x_i}\sigma_{p_i}\ge\hbar/2\) then gives
+\[
+\operatorname{Vol}_{\mathrm{Leb}}\bigl(\{s\le 1/2\}\bigr) = \frac{\pi^d}{d!}\prod_i\sigma_{x_i}\sigma_{p_i} \ge \frac{\pi^d}{d!}\Bigl(\frac{\hbar}{2}\Bigr)^d,
+\]
+with saturation when equality holds in every pair. (The Riemannian volume with respect to
+the Hessian metric \eqref{eq:hessian-metric} is the constant \(\pi^d/d!\), independent
+of the widths.)
+\end{proof}
+
+Thus a minimal-area bound for quadratic seam sublevel sets follows directly from the
+volume formula for ellipsoids together with the scale constraint
+\eqref{eq:heisenberg-constraint}. In quantum-mechanical applications this constraint is
+motivated by Robertson--Schr\"odinger in the Gaussian case; for non-Gaussian seams we will
+state any such area requirement explicitly as an assumption.
+
+%------------------------------------------------------------------
+\section{Immediate Computational Payoffs}
+%------------------------------------------------------------------
+
+The phase-space seam formulation immediately yields two practical tools that are not
+obvious from a purely covariance-matrix description.
+
+\paragraph{Inverse seam design via convex optimisation.}
+Given a target covariance structure (i.e., desired pairs \((\sigma_{x_i},\sigma_{p_i})\)
+or a full target ellipsoid), one can solve for the quadratic coefficients of \(s\) by
+minimising a strictly convex quadratic program whose variables are the diagonal entries
+of the Hessian. The scale constraint \(\sigma_x \sigma_p \ge \hbar/2\) appears as
+a set of simple quadratic inequalities. The resulting seam can be used to generate
+families of width-constrained seams or to enforce area/width bounds in variational
+calculations.
+
+\paragraph{Visual and numerical diagnostics.}
+The seam surface \(s(x,p)\) and its Hessian eigenvalues provide an immediate visual
+diagnostic: colour the phase-space domain by the product of the two eigenvalues of the
+local \(2\times2\) blocks of \(\operatorname{Hess} s\). Regions where the product
+approaches \(\hbar/2\) are visually ``saturated'' relative to the chosen scale.
+
+%------------------------------------------------------------------
+\section{Higher-Order Area Corrections from the Full 4-Jet}
+\label{sec:fourjet}
+%------------------------------------------------------------------
+
+The quadratic seam retains only the 2-jet of a general smooth seam. We now show that
+retaining the \emph{full} 4-jet --- including the cross-coupling between position and
+momentum directions --- leads to a first-order correction to sublevel-set area whose
+structure is richer than the diagonal treatment alone reveals. We restrict to dimension \(d = 1\)
+for explicit calculations; the extension to \(d > 1\) is discussed in
+Section~\ref{sec:higher-d}.
+
+%------------------------------------------------------------------
+\subsection{The Full Quartic Seam and Its Cross-Coupling}
+\label{subsec:full-quartic}
+%------------------------------------------------------------------
+
+The full quartic Taylor expansion of a smooth seam \(s\) in the normalised
+coordinates \(u = x/\sigma_x\), \(v = p/\sigma_p\) takes the form
+\begin{equation}
+s_4(u,v) = \frac{u^2 + v^2}{2}
+  + \frac{\lambda}{4}\bigl(a u^4 + b v^4 + 2c\, u^2 v^2\bigr),
+\label{eq:quartic-full}
+\end{equation}
+where \(a, b \ge 0\) and \(c \in \mathbb{R}\) are dimensionless shape parameters and
+\(\lambda > 0\) sets the overall scale of the quartic correction. Restoring physical
+units,
+\begin{equation}
+s_4(x,p) = \frac{x^2}{2\sigma_x^2} + \frac{p^2}{2\sigma_p^2}
+  + \frac{\lambda}{4}\!\left(
+    a\,\frac{x^4}{\sigma_x^4}
+    + b\,\frac{p^4}{\sigma_p^4}
+    + 2c\,\frac{x^2 p^2}{\sigma_x^2 \sigma_p^2}
+  \right).
+\label{eq:quartic-seam-full}
+\end{equation}
+The quadratic seam studied in earlier work corresponds to the restriction \(a = b = 1\),
+\(c = 0\), with \(\lambda = \lambda_{\text{diag}}\). The cross-coupling coefficient \(c\)
+controls the extent to which fourth-order fluctuations in \(x\) and \(p\) are
+correlated.
+
+%------------------------------------------------------------------
+\subsection{True Second Moments of \texorpdfstring{$\exp(-s_4)$}{exp(-s4)} Versus the Parameters}
+\label{subsec:true-variances}
+%------------------------------------------------------------------
+
+An important interpretational point is that for non-Gaussian seams, the parameters
+\(\sigma_x\) and \(\sigma_p\) used in \eqref{eq:quartic-seam-full} are \emph{not} equal to
+the true standard deviations computed from the model density
+\(\rho(x,p) \propto \exp(-s_4(x,p))\).
+
+To make this explicit, work in normalised variables \(u=x/\sigma_x\), \(v=p/\sigma_p\)
+and consider the probability density on \(\mathbb{R}^2\)
+\[
+\rho_\lambda(u,v) := Z_\lambda^{-1}\,\exp\!\left(-\frac{u^2+v^2}{2} - \frac{\lambda}{4}
+\left(a u^4 + b v^4 + 2c u^2v^2\right)\right),
+\]
+where \(Z_\lambda\) is the normalising constant.
+
+\begin{proposition}[First-order variances of the quartic model density]
+\label{prop:true-variances}
+Assume \(a,b\ge 0\), \(c\ge -\sqrt{ab}\), and \(\lambda\) is sufficiently small that the
+perturbation expansion is valid. Let expectations \(\langle\cdot\rangle_\lambda\) be taken
+with respect to \(\rho_\lambda\). Then, to first order in \(\lambda\),
+\begin{align}
+\langle u^2\rangle_\lambda &= 1 - \lambda(3a + c) + O(\lambda^2),
+\label{eq:u2-moment}\\
+\langle v^2\rangle_\lambda &= 1 - \lambda(3b + c) + O(\lambda^2).
+\label{eq:v2-moment}
+\end{align}
+Equivalently, the physical second moments of \(\rho(x,p)\propto \exp(-s_4(x,p))\) are
+\begin{align}
+\Delta x^2_{\rho} &= \langle x^2\rangle - \langle x\rangle^2
+  = \sigma_x^2\bigl(1 - \lambda(3a+c) + O(\lambda^2)\bigr),
+\label{eq:dx2}\\
+\Delta p^2_{\rho} &= \langle p^2\rangle - \langle p\rangle^2
+  = \sigma_p^2\bigl(1 - \lambda(3b+c) + O(\lambda^2)\bigr).
+\label{eq:dp2}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Write \(Q(u,v)=a u^4 + b v^4 + 2c u^2v^2\) and denote expectations under the standard
+Gaussian density \(\propto\exp(-(u^2+v^2)/2)\) by \(\langle\cdot\rangle_0\). For any test
+function \(f\), the standard perturbation identity gives
+\[
+\langle f\rangle_\lambda
+= \frac{\langle f\,e^{-\lambda Q/4}\rangle_0}{\langle e^{-\lambda Q/4}\rangle_0}
+= \langle f\rangle_0 - \frac{\lambda}{4}\bigl(\langle fQ\rangle_0 - \langle f\rangle_0\langle Q\rangle_0\bigr)
++ O(\lambda^2).
+\]
+Using Gaussian moments \(\langle u^2\rangle_0=\langle v^2\rangle_0=1\),
+\(\langle u^4\rangle_0=\langle v^4\rangle_0=3\), \(\langle u^6\rangle_0=\langle v^6\rangle_0=15\), and independence
+\(\langle u^{2m}v^{2n}\rangle_0=\langle u^{2m}\rangle_0\langle v^{2n}\rangle_0\), we obtain
+\(\langle Q\rangle_0=3a+3b+2c\),
+\(\langle u^2Q\rangle_0=15a+3b+6c\), and
+\(\langle v^2Q\rangle_0=3a+15b+6c\). Substitution yields
+\eqref{eq:u2-moment}--\eqref{eq:v2-moment}. Symmetry implies \(\langle u\rangle_\lambda=\langle v\rangle_\lambda=0\), so
+\eqref{eq:dx2}--\eqref{eq:dp2} follow by rescaling back to \(x,p\).
+\end{proof}
+
+\begin{remark}[Implication for interpreting \texorpdfstring{$\sigma_x\sigma_p$}{sigmax sigmap}]
+For \(\lambda>0\) and typical non-Gaussian parameters (e.g. \(a,b\ge 0\) and modest
+\(c\)), Proposition~\ref{prop:true-variances} shows
+\(\Delta x_{\rho}<\sigma_x\) and \(\Delta p_{\rho}<\sigma_p\) at first order. Therefore,
+any inequality of the form \(\sigma_x\sigma_p\ge \hbar/2\,(1+\cdots)\) should be read as
+a constraint on the \emph{jet parameters} \((\sigma_x,\sigma_p)\), not automatically as a
+sharpened statement about either (i) the operator uncertainties \(\Delta x\Delta p\) of a
+Hilbert-space state, or (ii) the second moments of the model density \(\exp(-s_4)\).
+\end{remark}
+
+\begin{remark}[Normalisability constraint]
+For the density \(\exp(-s_4)\) to be normalisable, the quartic form
+\(Q(u,v) = a u^4 + b v^4 + 2c\, u^2 v^2\) must be non-negative for all
+\((u,v) \in \mathbb{R}^2\). Evaluating along the ray \(u = v\) gives
+\(Q = (a + b + 2c)t^4\), so we need \(a + b + 2c \ge 0\). Evaluating along
+real rays yields the sharp condition. For \(v\neq 0\), write \(t:=(u/v)^2\ge 0\), so
+\(
+Q(u,v)=v^4\,(a t^2 + 2ct + b).
+\)
+If \(c\ge 0\) this is clearly nonnegative for all \(t\ge 0\). If \(c<0\) and \(a>0\), the minimum over
+\(t\ge 0\) occurs at \(t=-c/a\), so nonnegativity forces \(b-c^2/a\ge 0\), i.e. \(c^2\le ab\). (The degenerate
+cases \(a=0\) or \(b=0\) reduce similarly.) Hence the necessary and sufficient condition is
+\begin{equation}
+c \ge -\sqrt{ab}.
+\label{eq:normalisability}
+\end{equation}
+This is the \emph{normalisability constraint}. The diagonal case \(c = 0\) satisfies it
+whenever \(a, b \ge 0\).
+\end{remark}
+
+%------------------------------------------------------------------
+\subsection{The 4-Jet Rule and the Correct Invariant Scalar}
+\label{subsec:fourjet-scalar}
+%------------------------------------------------------------------
+
+\begin{definition}[4-Jet Rule]
+Given a four-times-differentiable seam \(s : \mathbb{R}^{2d} \to \mathbb{R}\), the
+\emph{4-jet rule} assigns to \(s\) the totally symmetric covariant \((0,4)\)-tensor
+\[
+T_{ijkl} = \frac{\partial^4 s}{\partial q^i \partial q^j \partial q^k \partial q^l},
+\qquad q = (x,p).
+\]
+\end{definition}
+
+For the full quartic seam \eqref{eq:quartic-seam-full} the non-zero components of the
+fourth-derivative tensor are
+\begin{align}
+T_{xxxx} &= \frac{\partial^4 s_4}{\partial x^4}
+  = \frac{6\lambda\, a}{\sigma_x^4}, \label{eq:T4-diag-x}\\
+T_{pppp} &= \frac{\partial^4 s_4}{\partial p^4}
+  = \frac{6\lambda\, b}{\sigma_p^4}, \label{eq:T4-diag-p}\\
+T_{xxpp} &= \frac{\partial^4 s_4}{\partial x^2\,\partial p^2}
+  = \frac{2\lambda\, c}{\sigma_x^2\,\sigma_p^2}. \label{eq:T4-cross}
+\end{align}
+Note that \(T_{xxpp}\) counts with the combinatorial multiplicity
+\(\binom{4}{2} = 6\) under full index symmetrisation (the six distinct placements of two \(x\)-indices
+and two \(p\)-indices), so its contribution to a full contraction is weighted by 6.
+
+\begin{definition}[Corrected 4-Jet Scalar]
+\label{def:K4-full}
+The \emph{4-jet scalar} of the full quartic seam \(s_4\) is the dimensionless quantity
+formed by full contraction of \(T_{ijkl}\) with the inverse Hessian metric
+\((g^{-1})^{\otimes 2}\):
+\begin{equation}
+K_4[s_4] := \frac{1}{6}\Bigl(
+  (g^{xx})^2 T_{xxxx}
+  + (g^{pp})^2 T_{pppp}
+  + 6\,(g^{xx})(g^{pp})\,T_{xxpp}
+\Bigr),
+\label{eq:fourjet-scalar-full}
+\end{equation}
+where \(g^{xx} = \sigma_x^2\) and \(g^{pp} = \sigma_p^2\) are the diagonal entries of
+the inverse Hessian metric, and the factor \(6\) multiplying the cross-term accounts for
+the combinatorial weight of two-\(x\) two-\(p\) index arrangements.
+\end{definition}
+
+\begin{remark}[Incompleteness of the diagonal definition]
+The definition used in earlier diagonal treatments sets
+\(K_4^{\text{diag}} = (1/6)\bigl((g^{xx})^2 T_{xxxx} + (g^{pp})^2 T_{pppp}\bigr)\),
+omitting the cross-contraction entirely. This is coordinate-invariant only within the
+restricted class of seams with \(c = 0\). For a general smooth seam, the full tensor
+\(T_{ijkl}\) has a non-zero \(T_{xxpp}\) component, and the correct invariant is
+\eqref{eq:fourjet-scalar-full}. Setting \(c = 0\) in \eqref{eq:fourjet-scalar-full}
+recovers the diagonal definition as a special case.
+\end{remark}
+
+Substituting \eqref{eq:T4-diag-x}--\eqref{eq:T4-cross} into \eqref{eq:fourjet-scalar-full}:
+\begin{equation}
+K_4[s_4] = \frac{1}{6}\!\left(
+  \sigma_x^4 \cdot \frac{6\lambda a}{\sigma_x^4}
+  + \sigma_p^4 \cdot \frac{6\lambda b}{\sigma_p^4}
+  + 6\,\sigma_x^2\sigma_p^2 \cdot \frac{2\lambda c}{\sigma_x^2\sigma_p^2}
+\right)
+= \lambda(a + b + 2c).
+\label{eq:K4-computed}
+\end{equation}
+The diagonal scalar satisfies \(K_4^{\text{diag}} = \lambda(a+b)\), so the full scalar
+exceeds it by \(2\lambda c\), which can be positive or negative depending on the sign
+of \(c\).
+
+%------------------------------------------------------------------
+\subsection{Area Reduction: The Full Quartic Case}
+\label{subsec:area-full}
+%------------------------------------------------------------------
+
+\begin{proposition}[Quartic Confinement, Full Version]
+\label{prop:area-reduction-full}
+For any quartic seam \(s_4\) with \(a,b \ge 0\) and \(\lambda > 0\), the sublevel set
+\(\{s_4 \le 1/2\}\) is strictly contained in the sublevel set \(\{s_2 \le 1/2\}\)
+of the corresponding quadratic seam. Consequently,
+\[
+A(s_4) := \operatorname{Area}\!\bigl(\{s_4 \le \tfrac{1}{2}\}\bigr) < \pi\sigma_x\sigma_p.
+\]
+\end{proposition}
+
+\begin{proof}
+Since \(a,b \ge 0\) and the normalisability constraint \eqref{eq:normalisability}
+gives \(c \ge -\sqrt{ab}\), the quartic form \(Q(u,v) = au^4 + bv^4 + 2cu^2v^2 \ge 0\)
+for all \((u,v)\). Therefore \(s_4(u,v) \ge s_2(u,v)\) for all \((u,v)\), and the
+containment \(\{s_4 \le 1/2\} \subseteq \{s_2 \le 1/2\}\) follows. Strict containment
+holds for all \((u,v)\ne(0,0)\) where \(Q > 0\), which is a set of positive area.
+\end{proof}
+
+%------------------------------------------------------------------
+\subsection{First-Order Area Computation with Cross-Coupling}
+\label{subsec:area-computation}
+%------------------------------------------------------------------
+
+In normalised coordinates \(u = x/\sigma_x\), \(v = p/\sigma_p\), write \(z=(u,v)\in\mathbb{R}^2\)
+and denote by \(\widetilde T_{ijkl} := \partial_i\partial_j\partial_k\partial_l s_4(0)\) the
+quartic jet tensor in these coordinates. Since the quadratic jet is \(\tfrac12|z|^2\), we may
+write the quartic seam in jet form as
+\[
+s_4(z)=\frac12|z|^2+\frac{1}{24}\,\widetilde T_{ijkl}\,z^i z^j z^k z^l\qquad(\widetilde T=O(\lambda)).
+\]
+For a unit direction \(n\in S^1\), let \(r(n)\) be the radial function of the level set
+\(\{s_4=1/2\}\), i.e. \(s_4(r(n)\,n)=1/2\). Then
+\[
+\frac12 r(n)^2+\frac{1}{24}r(n)^4\,\widetilde T(n,n,n,n)=\frac12,
+\qquad \widetilde T(n,n,n,n)=\widetilde T_{ijkl}n^i n^j n^k n^l.
+\]
+Solving perturbatively gives
+\begin{equation}
+r(n)^2=1-\frac{1}{12}\,\widetilde T(n,n,n,n)+O(\lambda^2).
+\label{eq:r2-expansion-invariant}
+\end{equation}
+The (normalised) area is therefore
+\[
+A_{uv}=\frac12\int_{S^1} r(n)^2\,d\Omega
+=\pi-\frac{1}{24}\int_{S^1}\widetilde T(n,n,n,n)\,d\Omega+O(\lambda^2).
+\]
+By \(O(2)\)-invariance of the sphere, the fourth moment has the standard form
+\begin{equation}
+\int_{S^1} n^i n^j n^k n^l\,d\Omega
+=\frac{\pi}{4}\bigl(\delta^{ij}\delta^{kl}+\delta^{ik}\delta^{jl}+\delta^{il}\delta^{jk}\bigr),
+\label{eq:sphere-4-moment-S1}
+\end{equation}
+so, using full symmetry of \(\widetilde T\),
+\begin{equation}
+\int_{S^1}\widetilde T(n,n,n,n)\,d\Omega
+=\frac{3\pi}{4}\,\widetilde T_{iijj}.
+\label{eq:spherical-average-double-trace}
+\end{equation}
+Here \(\widetilde T_{iijj}\) is the double trace (with respect to the quadratic metric \(\delta\)).
+For \eqref{eq:quartic-full}, direct differentiation gives
+\begin{equation}
+\widetilde T_{iijj}=\widetilde T_{uuuu}+2\widetilde T_{uuvv}+\widetilde T_{vvvv}
+=6\lambda(a+b)+4\lambda c
+=2\lambda(3a+3b+2c).
+\label{eq:double-trace-abc}
+\end{equation}
+Substituting \eqref{eq:spherical-average-double-trace}--\eqref{eq:double-trace-abc} yields
+\(A_{uv}=\pi\bigl(1-\lambda(3a+3b+2c)/16\bigr)+O(\lambda^2)\), recovering
+\eqref{eq:area-normalised} below.
+
+Equivalently, in polar coordinates \(u=r\cos\theta\), \(v=r\sin\theta\), the boundary
+\(\{s_4=1/2\}\) satisfies
+\begin{equation}
+\frac{r^2}{2} + \frac{\lambda}{4}\,r^4\,F(\theta) = \frac{1}{2},
+\label{eq:polar-levelset-full}
+\end{equation}
+where
+\begin{equation}
+F(\theta) := a\cos^4\theta + b\sin^4\theta + 2c\cos^2\theta\sin^2\theta.
+\label{eq:F-def}
+\end{equation}
+
+Solving \eqref{eq:polar-levelset-full} perturbatively by writing
+\(r^2 = 1 - \varepsilon\) and expanding to first order in \(\lambda\) gives
+\begin{equation}
+r^2(\theta) = 1 - \frac{\lambda}{2}\,F(\theta) + O(\lambda^2).
+\label{eq:r2-expansion}
+\end{equation}
+
+The three angular integrals required are standard:
+\begin{align}
+\int_0^{2\pi} \cos^4\theta\,d\theta &= \int_0^{2\pi}\sin^4\theta\,d\theta
+  = \frac{3\pi}{4}, \label{eq:int-diag}\\
+\int_0^{2\pi} \cos^2\theta\sin^2\theta\,d\theta &= \frac{\pi}{4}. \label{eq:int-cross}
+\end{align}
+Note that the cross-coupling integral \eqref{eq:int-cross} equals \(\pi/4\), while
+each diagonal integral \eqref{eq:int-diag} equals \(3\pi/4\): the cross-angular mode
+\(\cos^2\theta\sin^2\theta\) integrates to exactly one-third of the diagonal modes.
+This ratio is a geometric invariant that will determine the relative weighting of
+\(c\) versus \(a,b\) in the conditional width bound.
+
+Therefore,
+\begin{equation}
+\int_0^{2\pi} F(\theta)\,d\theta
+= \frac{3\pi a}{4} + \frac{3\pi b}{4} + 2c\cdot\frac{\pi}{4}
+= \frac{\pi}{4}\bigl(3a + 3b + 2c\bigr).
+\label{eq:F-integral}
+\end{equation}
+
+The area in normalised coordinates is
+\begin{align}
+A_{uv} &= \frac{1}{2}\int_0^{2\pi} r^2(\theta)\,d\theta \notag\\
+  &= \frac{1}{2}\int_0^{2\pi}\!\left(1 - \frac{\lambda}{2}F(\theta)\right)
+    d\theta + O(\lambda^2) \notag\\
+  &= \pi - \frac{\lambda}{4}\cdot\frac{\pi}{4}(3a + 3b + 2c) + O(\lambda^2) \notag\\
+  &= \pi\!\left(1 - \frac{\lambda(3a + 3b + 2c)}{16}\right) + O(\lambda^2).
+\label{eq:area-normalised}
+\end{align}
+
+Restoring physical units:
+\begin{equation}
+\boxed{
+A(s_4) = \pi\sigma_x\sigma_p\!\left(1 - \frac{\lambda(3a + 3b + 2c)}{16}\right)
++ O(\lambda^2).
+}
+\label{eq:area-quartic-full}
+\end{equation}
+
+\begin{remark}[The coefficient \(1/8\) versus \(3/16\)]
+The coefficient of the cross-coupling \(c\) in the area correction is \(\lambda/8\),
+while the coefficient of each diagonal term \(a\) or \(b\) is \(3\lambda/16\). Their
+ratio is \(2/3\), reflecting the $2c$ prefactor in \(Q\); the underlying angular integral
+ratio is \(1/3\), equal to
+\(\int\cos^2\theta\sin^2\theta\,d\theta \,/\, \int\cos^4\theta\,d\theta = (\pi/4)/(3\pi/4)\).
+Invariantly, this ratio is a consequence of the \(O(2)\)-invariant fourth-moment tensor
+\eqref{eq:sphere-4-moment-S1}: only the double-trace component \(\widetilde T_{iijj}\) of
+the quartic jet contributes to the first-order area variation, and the diagonal/cross
+weights follow from contracting \(\widetilde T\) against
+\(\delta^{ij}\delta^{kl}+\delta^{ik}\delta^{jl}+\delta^{il}\delta^{jk}\).
+
+This ratio of \(1/3\) between cross and diagonal angular integrals is a universal feature
+independent of \(\sigma_x\) and \(\sigma_p\): it encodes the angular geometry of the
+\(u\)-\(v\) plane and would appear unchanged in any rotation-invariant rescaling of the
+coordinates.
+\end{remark}
+
+%------------------------------------------------------------------
+\subsection{Invariant First Variation in \texorpdfstring{$n=2d$}{n=2d} Dimensions}
+\label{subsec:invariant-variation}
+%------------------------------------------------------------------
+
+The preceding derivation in \(n=2\) dimensions is a special case of a general coordinate-free
+statement: to first order, only the \emph{\(O(n)\)-scalar} (double-trace) component of the quartic
+jet can affect the sublevel-set volume.
+
+\begin{theorem}[Invariant first variation of sublevel-set volume]
+\label{thm:invariant-first-variation}
+Let \(s:\mathbb{R}^n\to\mathbb{R}\) be \(C^4\) in a neighbourhood of the origin, with
+\(s(0)=0\), \(\nabla s(0)=0\), and positive definite quadratic jet
+\(g_{ij}=\partial_i\partial_j s(0)\). Let \(T_{ijkl}=\partial_i\partial_j\partial_k\partial_l s(0)\)
+be the fully symmetric quartic jet tensor. For \(\varepsilon>0\) sufficiently small, define the
+sublevel-set volume
+\[
+V(\varepsilon):=\operatorname{Vol}_{\mathrm{Leb}}\bigl(\{z\in\mathbb{R}^n: s(z)\le \varepsilon\}\bigr).
+\]
+Then
+\begin{equation}
+V(\varepsilon)
+=\frac{\omega_n}{n}\,\frac{(2\varepsilon)^{n/2}}{\sqrt{\det g}}
+\left(1-\frac{\varepsilon}{4(n+2)}\,\mathrm{Tr}_g\mathrm{Tr}_g(T)+O(\varepsilon^2)+O(\|T\|^2)\right),
+\label{eq:invariant-first-variation}
+\end{equation}
+where \(\omega_n\) is the surface area of \(S^{n-1}\) and
+\(\mathrm{Tr}_g\mathrm{Tr}_g(T):=g^{ij}g^{kl}T_{ijkl}\) is the double trace with respect to \(g\).
+\end{theorem}
+
+\begin{proof}
+By a linear change of variables \(y=Lz\) with \(L^T g L=I\), we may assume \(g=I\) at the cost of a
+Jacobian factor \(1/\sqrt{\det g}\) in Lebesgue volume; the tensor \(T\) transforms covariantly and the
+contraction \(\mathrm{Tr}_g\mathrm{Tr}_g(T)\) is invariant.
+
+With \(g=I\), write \(z=rn\) with \(n\in S^{n-1}\). The jet expansion gives
+For sufficiently small \(\varepsilon>0\), the sublevel set \(\{s\le \varepsilon\}\) is star-shaped about the origin, so its boundary can be written as \(\{r(n)\,n: n\in S^{n-1}\}\) for a smooth radial function \(r(n)>0\).
+\(s(rn)=\tfrac12 r^2+\tfrac1{24}r^4 T(n,n,n,n)+O(r^6)\). Solving \(s(rn)=\varepsilon\) perturbatively yields
+\(r(n)^2=2\varepsilon-\tfrac13\varepsilon^2 T(n,n,n,n)+O(\varepsilon^3)+O(\|T\|^2)\). Hence
+\(r(n)^n=(2\varepsilon)^{n/2}\left(1-\tfrac{n\varepsilon}{12}T(n,n,n,n)\right)+\cdots\). Using
+\(V(\varepsilon)=\tfrac1n\int_{S^{n-1}} r(n)^n\,d\Omega\) gives
+\[
+V(\varepsilon)=\frac{\omega_n}{n}(2\varepsilon)^{n/2}-\frac{(2\varepsilon)^{n/2}}{12}\,\varepsilon\int_{S^{n-1}}T(n,n,n,n)\,d\Omega+\cdots.
+\]
+By \(O(n)\)-invariance, the fourth moment of the uniform measure on \(S^{n-1}\) has the universal form
+\begin{equation}
+\int_{S^{n-1}} n^i n^j n^k n^l\,d\Omega
+= \frac{\omega_n}{n(n+2)}\bigl(\delta^{ij}\delta^{kl}+\delta^{ik}\delta^{jl}+\delta^{il}\delta^{jk}\bigr).
+\label{eq:sphere-4-moment-Sn}
+\end{equation}
+Contracting against symmetric \(T_{ijkl}\) yields
+\(\int_{S^{n-1}}T(n,n,n,n)\,d\Omega=\frac{3\omega_n}{n(n+2)}\,T_{iijj}\), and substituting back gives
+\eqref{eq:invariant-first-variation} (with \(T_{iijj}=\mathrm{Tr}\,\mathrm{Tr}(T)\) in the \(g=I\) frame).
+\end{proof}
+
+\begin{remark}[Only the \texorpdfstring{$O(n)$}{O(n)}-scalar part contributes at first order]
+Equation \eqref{eq:sphere-4-moment-Sn} shows that the spherical averaging operator
+\(T\mapsto\int_{S^{n-1}}T(n,n,n,n)\,d\Omega\) projects the quartic jet onto its unique
+\(O(n)\)-invariant scalar component. Equivalently, all trace-free irreducible components of
+\(T\in\mathrm{Sym}^4(\mathbb{R}^n)\) integrate to zero at first order; the first variation depends only on
+\(\mathrm{Tr}_g\mathrm{Tr}_g(T)\).
+\end{remark}
+
+\begin{corollary}[Quadratic seams are locally extremal at first order]
+Under the assumptions of Theorem~\ref{thm:invariant-first-variation}, let
+\(s_2(z):=\tfrac12 g_{ij}z^iz^j\) be the quadratic seam with the same quadratic jet and let
+\(V_2(\varepsilon):=\operatorname{Vol}_{\mathrm{Leb}}(\{z:s_2(z)\le\varepsilon\})\). Then
+\begin{equation}
+\frac{V(\varepsilon)}{V_2(\varepsilon)}
+=1-\frac{\varepsilon}{4(n+2)}\,\mathrm{Tr}_g\mathrm{Tr}_g(T)+O(\varepsilon^2)+O(\|T\|^2).
+\label{eq:quadratic-extremal-first-order}
+\end{equation}
+In particular, if \(\mathrm{Tr}_g\mathrm{Tr}_g(T)>0\) then \(V(\varepsilon)<V_2(\varepsilon)\) for
+all sufficiently small \(\varepsilon>0\); if \(\mathrm{Tr}_g\mathrm{Tr}_g(T)<0\) then the inequality is
+reversed to first order; and if \(\mathrm{Tr}_g\mathrm{Tr}_g(T)=0\) then the first-order variation vanishes.
+\end{corollary}
+
+\begin{remark}[A simple rigidity criterion under directional positivity]
+The first-order statement becomes rigid under an additional positivity hypothesis.
+After transforming to normal coordinates \(g=I\), suppose the homogeneous quartic form
+\(n\mapsto T(n,n,n,n)\) satisfies \(T(n,n,n,n)\ge 0\) for all \(n\in S^{n-1}\).
+Then \eqref{eq:sphere-4-moment-Sn} implies
+\(\mathrm{Tr}\,\mathrm{Tr}(T)\ge 0\), and if \(\mathrm{Tr}\,\mathrm{Tr}(T)=0\) then
+\(\int_{S^{n-1}}T(n,n,n,n)\,d\Omega=0\) forces \(T(n,n,n,n)\equiv 0\) on \(S^{n-1}\).
+Since \(T(n,n,n,n)\) is a homogeneous polynomial, vanishing on the sphere implies it vanishes for all \(n\in\mathbb{R}^n\).
+By the standard polarisation identity for symmetric 4-tensors, vanishing of the associated quartic form implies \(T_{ijkl}=0\).
+Thus, under directional positivity, the quadratic seam is the unique seam (to quartic order)
+with vanishing first variation.
+\end{remark}
+
+%------------------------------------------------------------------
+\subsection{A Conditional Width Bound with Cross-Coupling}
+\label{subsec:bound-full}
+%------------------------------------------------------------------
+
+\begin{assumption}[Level-set area hypothesis]
+\label{assump:area}
+For applications in which one postulates a quantum-motivated phase-space scale, the
+Lebesgue area of the sublevel set
+\(\{s\le 1/2\}\) satisfies
+\(
+A(s) := \operatorname{Area}(\{s\le 1/2\}) \ge \pi\hbar/2.
+\)
+\end{assumption}
+
+\begin{remark}[When the area hypothesis is rigorous]
+For a one-mode Gaussian state with covariance matrix \(\Sigma\), the Robertson--Schr\"odinger
+inequality implies \(\det\Sigma\ge (\hbar/2)^2\) \cite{Robertson1929,Schrodinger1930}. The
+covariance ellipse \(\{z^T\Sigma^{-1}z\le 1\}\) has area \(2\pi\sqrt{\det\Sigma}\), hence at
+level \(s=1/2\) the corresponding quadratic seam satisfies
+\(A(s)=\pi\,\Delta x\,\Delta p\ge \pi\hbar/2\). For general non-Gaussian seams, however,
+\(\{s\le 1/2\}\) need not coincide with a covariance ellipse, so Assumption~\ref{assump:area}
+should be viewed as an additional modelling postulate rather than a consequence of the
+canonical commutation relation.
+\end{remark}
+
+\begin{theorem}[Conditional Full 4-Jet Width Bound]
+\label{thm:fourjet-bound-full}
+Let \(s_4\) be the full quartic seam \eqref{eq:quartic-seam-full} with parameters
+\(a,b \ge 0\), \(c \ge -\sqrt{ab}\), and \(\lambda > 0\). If the sublevel set
+\(\{s_4 \le 1/2\}\) satisfies Assumption~\ref{assump:area},
+then to first order in \(\lambda\),
+\begin{equation}
+\boxed{
+\sigma_x\sigma_p \;\ge\;
+\frac{\hbar/2}{\,1 - \lambda(3a + 3b + 2c)/16\,}
+\;\approx\;
+\frac{\hbar}{2}\!\left(1 + \frac{\lambda(3a + 3b + 2c)}{16}\right).
+}
+\label{eq:fourjet-bound-full}
+\end{equation}
+This bound is valid provided \(\lambda(3a + 3b + 2c) < 16\).
+For \(c = 0\) and \(a = b = 1\) this reduces to the diagonal result
+\(\sigma_x\sigma_p \ge (\hbar/2)(1 + 3\lambda/8)\).
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:area-quartic-full}, the minimal-area condition reads
+\[
+\pi\sigma_x\sigma_p\!\left(1 - \frac{\lambda(3a + 3b + 2c)}{16}\right) \ge \frac{\pi\hbar}{2},
+\]
+from which \eqref{eq:fourjet-bound-full} follows by dividing both sides by
+\(\pi\bigl(1 - \lambda(3a+3b+2c)/16\bigr)\), which is positive by assumption.
+\end{proof}
+
+%------------------------------------------------------------------
+\section{Universality: Normalisability Forces a Positive First-Order Correction}
+\label{sec:universality}
+%------------------------------------------------------------------
+
+Theorem~\ref{thm:fourjet-bound-full} shows that the sign of the first-order correction
+term is determined by the sign of \(3a + 3b + 2c\). This quantity can be negative if
+\(c\) is sufficiently negative, which would \emph{loosen} rather than tighten the
+resulting width bound under Assumption~\ref{assump:area}. The central question is
+therefore: can a normalisable quartic density \(\exp(-s_4)\) achieve
+\(3a + 3b + 2c \le 0\)?
+
+The following theorem answers this question decisively in the negative.
+
+\begin{theorem}[Universality of a positive correction coefficient]
+\label{thm:universality}
+For any quartic seam \(s_4\) with \(a,b \ge 0\), \(\lambda > 0\), and
+cross-coupling coefficient satisfying the normalisability constraint
+\(c \ge -\sqrt{ab}\), the correction coefficient satisfies
+\begin{equation}
+3a + 3b + 2c > 0
+\label{eq:positive-correction}
+\end{equation}
+provided \(Q \not\equiv 0\), i.e., provided \((a,b,c) \ne (0,0,0)\).
+\end{theorem}
+
+\begin{proof}
+We consider the two exhaustive cases.
+
+\textbf{Case 1: \(a + b = 0\).}
+Since \(a,b \ge 0\), this means \(a = b = 0\). For \(Q = 2cu^2v^2 \ge 0\) to
+hold for all \((u,v)\) with \(Q \not\equiv 0\), we need \(c > 0\). Then
+\(3a + 3b + 2c = 2c > 0\).
+
+\textbf{Case 2: \(a + b > 0\).}
+By the AM-GM inequality,
+\[
+\sqrt{ab} \le \frac{a + b}{2}.
+\]
+The normalisability constraint gives \(c \ge -\sqrt{ab}\), hence
+\[
+c \ge -\sqrt{ab} \ge -\frac{a+b}{2}.
+\]
+Therefore
+\[
+3a + 3b + 2c \ge 3(a + b) + 2\cdot\!\left(-\frac{a+b}{2}\right)
+= 3(a+b) - (a+b) = 2(a+b) > 0. \qedhere
+\]
+\end{proof}
+
+\begin{corollary}[Non-Gaussianity increases the required width product (conditional)]
+Assume Assumption~\ref{assump:area}. For any normalisable non-Gaussian seam (i.e., any
+quartic seam with \((a,b,c) \ne (0,0,0)\) satisfying \eqref{eq:normalisability}), the
+width product \(\sigma_x\sigma_p\) is strictly bounded above \(\hbar/2\):
+\[
+\sigma_x\sigma_p > \frac{\hbar}{2}.
+\]
+The bound is saturated --- i.e., \(3a + 3b + 2c = 0\) --- only in the unphysical
+limiting case \((a,b,c) = (0,0,0)\), which reduces to a Gaussian seam.
+\end{corollary}
+
+The proof of Theorem~\ref{thm:universality} reveals that the AM-GM inequality and the
+normalisability constraint \eqref{eq:normalisability} are in precise correspondence: the
+minimum value of \(c\) that preserves normalisability is \(-\sqrt{ab}\), and
+substituting this minimum into \(3a + 3b + 2c\) gives \(3(a+b) - 2\sqrt{ab} \ge
+2(a+b) > 0\), with the second inequality being strict AM-GM. The normalisability
+constraint is therefore the \emph{exact} analytic condition that prevents the
+cross-coupling from cancelling the first-order correction.
+
+%------------------------------------------------------------------
+\section{Extremal Seams: Minimising the Quartic Correction}
+\label{sec:extremal}
+%------------------------------------------------------------------
+
+Although the correction coefficient \(3a + 3b + 2c\) is always positive, its magnitude
+depends on \(c\). For fixed diagonal non-Gaussianity \(a + b > 0\), the correction is
+minimised when \(c\) is as negative as normalisability allows, i.e., at the
+\emph{extremal} value \(c = -\sqrt{ab}\).
+
+\begin{definition}[Extremal Quartic Seam]
+A quartic seam \(s_4\) with \(a,b > 0\) is \emph{extremal} if the cross-coupling
+saturates the normalisability bound:
+\begin{equation}
+c = -\sqrt{ab}.
+\label{eq:extremal-c}
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Extremal correction coefficient]
+\label{prop:extremal}
+For fixed \(a + b > 0\), the correction coefficient \(3a + 3b + 2c\) is minimised over
+all normalisable \(c\) at the extremal value \(c = -\sqrt{ab}\), where it equals
+\begin{equation}
+(3a + 3b + 2c)\big|_{c=-\sqrt{ab}}
+= 3(a + b) - 2\sqrt{ab}
+= (\sqrt{a} + \sqrt{b})^2 + (\sqrt{a} - \sqrt{b})^2 + (a+b) > 0.
+\label{eq:extremal-correction}
+\end{equation}
+Equivalently, \(3a + 3b - 2\sqrt{ab} = (\sqrt{3a} - \sqrt{b/3})^2 +
+(8b/3) > 0\).
+\end{proposition}
+
+\begin{proof}
+Since \(c \ge -\sqrt{ab}\) and \(3a + 3b + 2c\) is increasing in \(c\), the minimum is
+at \(c = -\sqrt{ab}\), giving
+\(3(a+b) - 2\sqrt{ab} = a + b + 2(a + b - \sqrt{ab}) \ge a + b > 0\),
+where we used \(a + b \ge 2\sqrt{ab}\) by AM-GM.
+\end{proof}
+
+The extremal seam has a natural geometric interpretation. The quartic form
+\(Q = au^4 + bv^4 - 2\sqrt{ab}\,u^2v^2 = (\sqrt{a}\,u^2 - \sqrt{b}\,v^2)^2 \ge 0\)
+vanishes precisely along the two lines \(v = \pm(\sqrt{a/b})^{1/2} u\) in the
+normalised \((u,v)\) plane. Along these lines the quartic correction is exactly zero,
+and the seam is purely quadratic. In all other directions the quartic correction is
+strictly positive and confines the sublevel set.
+
+\begin{remark}[Geometric interpretation of extremal seams]
+The extremal condition \(c = -\sqrt{ab}\) means that position-squared and
+momentum-squared fluctuations are as \emph{negatively correlated} as possible while
+maintaining normalisability. The state has strong fourth-order fluctuations in the
+diagonal directions \(x \sim \pm(\sigma_x/\sigma_p)^{1/2} p\) but is constrained near
+the axes. Among all non-Gaussian seams with fixed diagonal kurtosis \(a + b\), extremal
+seams are the \emph{closest to quadratic} in the sense of minimising the quartic width
+penalty implicit in \eqref{eq:fourjet-bound-full} under Assumption~\ref{assump:area}.
+\end{remark}
+
+%------------------------------------------------------------------
+\section{Connection to the Non-Gaussianity Witness}
+\label{sec:nongaussianity}
+%------------------------------------------------------------------
+
+The scalar \(K_4^{\text{full}} = \lambda(a + b + 2c)\) defined in
+\eqref{eq:K4-computed} provides a coordinate-invariant witness for non-Gaussianity, but
+it is \emph{not} the quantity that appears in the conditional width bound. The bound
+\eqref{eq:fourjet-bound-full} is governed by the weighted combination
+\begin{equation}
+\mathcal{W}_4 := \lambda\,\frac{3(a+b) + 2c}{16}
+= \frac{3\lambda(a+b)}{16} + \frac{\lambda c}{8}
+= \frac{3K_4^{\text{diag}}}{16} + \frac{\lambda c}{8},
+\label{eq:W4-def}
+\end{equation}
+where \(K_4^{\text{diag}} = \lambda(a+b)\) is the diagonal 4-jet scalar. The full
+4-jet scalar \(K_4^{\text{full}}\) can be recovered from \(\mathcal{W}_4\) and
+\(K_4^{\text{diag}}\):
+\[
+K_4^{\text{full}} = K_4^{\text{diag}} + 2\lambda c
+= 2K_4^{\text{full}} - K_4^{\text{diag}}
+\quad\Longrightarrow\quad
+\lambda c = \frac{K_4^{\text{full}} - K_4^{\text{diag}}}{2}.
+\]
+Substituting back,
+\begin{equation}
+\mathcal{W}_4 = \frac{3K_4^{\text{diag}}}{16}
+  + \frac{K_4^{\text{full}} - K_4^{\text{diag}}}{16}
+= \frac{K_4^{\text{full}} + 2K_4^{\text{diag}}}{16}.
+\label{eq:W4-from-scalars}
+\end{equation}
+The bound is therefore governed by the weighted average of the full and
+diagonal 4-jet scalars with weights \(1:2\), not by either scalar alone. This gives a
+precise statement of how much information the diagonal treatment loses: it overestimates
+the correction coefficient by a factor that depends on the relative size of
+\(K_4^{\text{full}}\) and \(K_4^{\text{diag}}\). When \(c > 0\) the diagonal treatment
+underestimates the correction; when \(c < 0\) it overestimates.
+
+%------------------------------------------------------------------
+\section{The Jet Hierarchy}
+\label{sec:hierarchy}
+%------------------------------------------------------------------
+
+Theorem~\ref{thm:fourjet-bound-full} and Theorem~\ref{thm:universality} together
+establish the first two levels of a hierarchy of width bounds (conditional on
+Assumption~\ref{assump:area} at quartic order) indexed by the even jets of a smooth seam:
+
+\paragraph{Where \texorpdfstring{$\hbar$}{hbar} enters.}
+The appearance of \(\hbar\) here is not intrinsic to the jet calculus itself: it enters only through
+the chosen \emph{phase-space scale} used to turn geometric area/volume statements into a width-product bound.
+Concretely, at quadratic order the bound \(\sigma_x\sigma_p\ge \hbar/2\) is the quantum-motivated scale constraint
+\eqref{eq:heisenberg-constraint}, and at quartic order the same scale is propagated via the level-set area
+hypothesis (Assumption~\ref{assump:area}). If one prefers a purely geometric presentation, one may replace
+\(\hbar/2\) everywhere in the table by an abstract constant \(\kappa>0\) (equivalently, write
+\(A(s)\ge \pi\kappa\) in Assumption~\ref{assump:area}); the jet-dependent correction factors
+\(1+\mathcal{W}_{2k}+\cdots\) are unchanged.
+
+\medskip
+\begin{center}
+\begin{tabular}{clll}
+\hline
+Jet & Geometric object & Width bound & Universality \\
+\hline
+2 & Hessian metric \(g\) & \(\sigma_x\sigma_p \ge \hbar/2\) & Always positive \\
+4 & \(T_{ijkl}\), weighted scalar \(\mathcal{W}_4\)
+  & \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_4 + \cdots)\)
+  & Positive iff normalisable \\
+\(2k\) & Symmetric \(2k\)-tensor, scalar \(\mathcal{W}_{2k}\)
+  & \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_{2k} + \cdots)\)
+  & Conjectured positive \\
+\hline
+\end{tabular}
+\end{center}
+\medskip
+
+At the fourth-order level the universality of positive corrections follows from the
+AM-GM inequality and the normalisability constraint. We conjecture that analogous
+positivity statements hold at every even order \(2k\), with the relevant physical
+constraint being normalisability of \(\exp(-s_{2k})\) at that order.
+
+%------------------------------------------------------------------
+\section{Multi-Mode Extension}
+\label{sec:higher-d}
+%------------------------------------------------------------------
+
+For \(d > 1\), the phase space is \(\mathbb{R}^{2d}\) with coordinates
+\((x_1,\dots,x_d,p_1,\dots,p_d)\), and the quartic jet acquires many more independent components.
+In normalised coordinates \(q=(u_1,\dots,u_d,v_1,\dots,v_d)\) (so the quadratic jet is \(\tfrac12|q|^2\)),
+write the local 4-jet expansion
+\[
+s(q)=\frac12|q|^2+\frac{1}{24}\,\widetilde T_{ijkl}\,q^i q^j q^k q^l+O(|q|^6),
+\]
+where \(\widetilde T\) is the fully symmetric quartic jet tensor in these coordinates.
+
+The angular integrals over the unit sphere \(S^{2d-1}\) are controlled invariantly by
+the spherical fourth-moment identity \eqref{eq:sphere-4-moment-Sn}. In components, this implies
+\begin{align}
+\int_{S^{2d-1}} q_i^4\, d\Omega &= \frac{3\,\omega_{2d}}{2d(2d+2)},
+\label{eq:int-sphere-4}\\
+\int_{S^{2d-1}} q_i^2 q_j^2\, d\Omega &= \frac{\omega_{2d}}{2d(2d+2)} \quad (i \ne j),
+\label{eq:int-sphere-22}
+\end{align}
+where \(\omega_{2d}\) is the surface area of \(S^{2d-1}\). The ratio of cross to
+diagonal angular integrals is again \(1:3\), independent of dimension. This means the
+first-order sublevel-set volume correction depends only on the double trace of \(\widetilde T\).
+
+Specialising Theorem~\ref{thm:invariant-first-variation} to \(n=2d\) and the level \(\varepsilon=1/2\)
+(so \((2\varepsilon)^{n/2}=1\)) yields the relative correction
+\begin{equation}
+\mathcal{W}_4^{(d)} := \frac{1}{8(2d+2)}\,\mathrm{Tr}\,\mathrm{Tr}(\widetilde T)
+= \frac{1}{8(2d+2)}\,\widetilde T_{iijj},
+\label{eq:W4-multimode}
+\end{equation}
+which is manifestly basis-independent. If one expands \(\widetilde T_{iijj}\) in an orthonormal basis,
+the same \(1:3\) diagonal-versus-cross weighting reappears (via \eqref{eq:int-sphere-4}--\eqref{eq:int-sphere-22}),
+confirming that the ratio is a spherical-geometry invariant rather than a coordinate artefact.
+
+\begin{remark}[Positivity forces a positive \texorpdfstring{$O(n)$}{O(n)}-scalar projection]
+If the quartic jet induces a nonnegative homogeneous quartic form on directions,
+\(\widetilde T(n,n,n,n)\ge 0\) for all \(n\in S^{2d-1}\) (as occurs, for example, when one requires
+normalisability of a model density \(\propto\exp(-s)\) with a strictly positive quartic part), then
+\(\int_{S^{2d-1}}\widetilde T(n,n,n,n)\,d\Omega\ge 0\). By \eqref{eq:sphere-4-moment-Sn}, this is equivalent to
+\(\widetilde T_{iijj}\ge 0\), hence \(\mathcal{W}_4^{(d)}\ge 0\). Moreover, if \(\widetilde T(n,n,n,n)\) is not
+identically zero on the sphere then the inequality is strict.
+\end{remark}
+
+%------------------------------------------------------------------
+\section{Saturation, Gaussians, and Further Directions}
+%------------------------------------------------------------------
+
+\begin{corollary}[Saturation at every level]
+The bound \eqref{eq:fourjet-bound-full} is saturated (i.e., the correction vanishes)
+if and only if \(a = b = c = 0\) and \(\sigma_x\sigma_p = \hbar/2\). These conditions
+hold simultaneously only for the quadratic (Gaussian) seam, confirming that any
+departure from quadraticity incurs a strict first-order correction at quartic order (under
+Assumption~\ref{assump:area}).
+\end{corollary}
+
+\paragraph{Curved-space extensions.}
+Equip \(\mathbb{R}^{2d}\) with a background Riemannian metric \(h\) and define the seam
+\(s\) relative to \(h\). The covariant Hessian rule \(g_{ij} = \nabla_i\nabla_j s\)
+incorporates curvature of the background. On positively curved backgrounds the effective
+area/width floor may increase; the quartic correction \eqref{eq:W4-multimode} will
+acquire additional terms from curvature tensors contracted against \(T_{ijkl}\), and the
+universality theorem will require a modified normalisability constraint that couples the
+quartic seam coefficients to the background Ricci tensor.
+
+\paragraph{Universal approximation conjecture.}
+Every sufficiently regular, strictly positive density on \(\mathbb{R}^{2d}\) may be
+approximated (in an appropriate topology) by finite mixtures of quartic exponential
+models of the form \(\propto\exp(-s_4)\). The weighted scalar \eqref{eq:W4-from-scalars}
+would then provide an explicit non-Gaussianity measure for each component.
+
+%------------------------------------------------------------------
+\section{Conclusion}
+%------------------------------------------------------------------
+
+Phase-space seams provide a scalar-first, entirely geometric framework for studying
+Hessian-generated geometry and sublevel-set volumes on phase space. The extension to the
+full quartic seam --- including the
+position-momentum cross-kurtosis term \(x^2 p^2\) --- reveals structure absent from the
+diagonal-only treatment:
+
+\begin{enumerate}
+\item The correct 4-jet scalar for the conditional width bound is not \(K_4^{\text{full}} =
+\lambda(a+b+2c)\) but the weighted combination \(\mathcal{W}_4 = \lambda(3a+3b+2c)/16\),
+in which the cross-coupling contributes with weight \(1/3\) relative to the diagonal
+terms (from the angular integrals), with the overall \(1/16\) factor rather than \(1/8\)
+following from the correct evaluation
+\(\int_0^{2\pi}\cos^4\theta\,d\theta = 3\pi/4\) and
+\(\int_0^{2\pi}\cos^2\theta\sin^2\theta\,d\theta = \pi/4\).
+The ratio \(1/3\) between the angular integrals is a universal geometric invariant, and
+the full expression \((\pi/4)(3a+3b+2c)\) integrating \(F(\theta)\) captures both.
+
+\item The normalisability constraint \(c \ge -\sqrt{ab}\) is precisely the condition that
+forces \(3a+3b+2c > 0\) for all non-trivial quartic seams. The proof reduces to a single
+application of the AM-GM inequality. Normalisability is therefore not merely a
+technical requirement but the exact analytic principle that prevents cross-coupling from
+cancelling the first-order correction.
+
+\item Among all non-Gaussian seams with fixed diagonal kurtosis \(a+b > 0\), the
+extremal seams with \(c = -\sqrt{ab}\) minimise the quartic correction. They
+are characterised geometrically as seams whose quartic correction vanishes along two
+specific lines in phase space and is concentrated in the transverse directions.
+Equivalently, at fixed diagonal kurtosis, they furnish a canonical family of
+``most Gaussian-like'' normalisable quartic seams for variational calculations.
+
+\item Under Assumption~\ref{assump:area}, the conditional width bound takes the explicit
+form \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_4 + O(\lambda^2))\) with
+\(\mathcal{W}_4 > 0\) for all normalisable non-Gaussian seams.
+\end{enumerate}
+
+The immediate computational payoffs (convex inverse design and visual diagnostics) are
+ready for implementation using \(\mathcal{W}_4\) rather than the diagonal scalar. The
+sketched multi-mode extension suggests that the \(1:3\) ratio of cross to diagonal
+angular integrals is a dimension-independent geometric constant that will appear at every
+level of the jet hierarchy.
+
+\paragraph{Caveat on physical interpretation.}
+For non-Gaussian seams, the width parameters \(\sigma_x,\sigma_p\) are not identical to
+either (i) the true second moments of the model density \(\exp(-s_4)\) (see
+Proposition~\ref{prop:true-variances}) or (ii) the operator uncertainties of an
+underlying Hilbert-space state without specifying an explicit phase-space mapping (e.g.
+via a Husimi \(Q\)-function). Accordingly, the quartic correction derived here should
+be read as a conditional geometric statement about jet parameters under
+Assumption~\ref{assump:area}, not as a general strengthening of
+\(\Delta x\,\Delta p\ge\hbar/2\).
+
+%------------------------------------------------------------------
+\begin{thebibliography}{99}
+
+\bibitem{Wigner1932}
+E.~Wigner,
+\emph{On the Quantum Correction For Thermodynamic Equilibrium},
+Phys. Rev. \textbf{40} (1932), 749--759.
+
+\bibitem{Husimi1940}
+K.~Husimi,
+\emph{Some Formal Properties of the Density Matrix},
+Proc. Phys.-Math. Soc. Japan \textbf{22} (1940), 264--314.
+
+\bibitem{Hillery1984}
+M.~Hillery, R.~F. O'Connell, M.~O. Scully, and E.~P. Wigner,
+\emph{Distribution functions in physics: Fundamentals},
+Phys. Rep. \textbf{106} (1984), 121--167.
+
+\bibitem{Schleich2001}
+W.~P. Schleich,
+\emph{Quantum Optics in Phase Space},
+Wiley-VCH, 2001.
+
+\bibitem{Robertson1929}
+H.~P. Robertson,
+\emph{The Uncertainty Principle},
+Phys. Rev. \textbf{34} (1929), 163--164.
+
+\bibitem{Schrodinger1930}
+E.~Schr\"odinger,
+\emph{Zum Heisenbergschen Unsch\"arfeprinzip},
+Sitzungsberichte der Preu\ss ischen Akademie der Wissenschaften, Phys.-Math. Klasse
+(1930), 296--303.
+
+\bibitem{Rao1945}
+C.~R. Rao,
+\emph{Information and the Accuracy Attainable in the Estimation of Statistical Parameters},
+Bull. Calcutta Math. Soc. \textbf{37} (1945), 81--91.
+
+\bibitem{AmariNagaoka2000}
+S.-I. Amari and H.~Nagaoka,
+\emph{Methods of Information Geometry},
+Translations of Mathematical Monographs, Vol. 191, AMS, 2000.
+
+\bibitem{Shima2007}
+H.~Shima,
+\emph{The Geometry of Hessian Structures},
+World Scientific, 2007.
+
+\bibitem{deGosson2006}
+M.~de Gosson,
+\emph{Symplectic Geometry and Quantum Mechanics},
+Birkh\"auser, 2006.
+
+\end{thebibliography}
+
+\end{document}

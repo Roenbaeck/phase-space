@@ -1,428 +1,163 @@
-Review of “Phase-Space Seams: Hessian Geometry and the Invariant First Variation of Quartic Sublevel Sets”
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#1-1), lines 1 to 100
 
-Summary: The manuscript introduces phase-space seams, defining a Riemannian metric from the Hessian of a scalar function on phase space, and studies volumes of sublevel sets of the seam. Its main result is that the first-order variation of the sublevel-set volume in small radius depends only on the full O(n)-invariant contraction (double trace) of the 4th-order jet of the scalar. Specializing to a quartic “seam” in 1 mode 
-(
-𝑑
-=
-1
-)
-(d=1), the paper computes the area correction to first order in the quartic strength and shows that normalisability forces a strictly positive correction. Quadratic (Gaussian) seams saturate the uncertainty-area bound 
-𝜎
-𝑥
-𝜎
-𝑝
-≥
-ℏ
-/
-2
-σ
-x
-	​
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#101-101), lines 101 to 300
 
-σ
-p
-	​
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#301-301), lines 301 to 500
 
-≥ℏ/2. The note is self-contained and uses elementary multivariate calculus and inequalities.
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#501-501), lines 501 to 700
 
-The exposition is generally clear and organized with definitions, theorems, and proofs. To elevate the paper, we suggest placing it in broader context and connecting to related work in both information geometry and phase-space quantum mechanics. In particular:
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#701-701), lines 701 to 900
 
-Hessian Manifold / Information Geometry: The “Hessian rule” (metric 
-𝑔
-𝑖
-𝑗
-=
-∂
-𝑖
-∂
-𝑗
-𝑠
-g
-ij
-	​
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#901-901), lines 901 to 1100
 
-=∂
-i
-	​
+Read [](file:///Users/lars/Documents/GitHub/phase-space/phase-space.tex#1101-1101), lines 1101 to 1192
 
-∂
-j
-	​
+Created 6 todos
 
-s) is exactly the structure of a Hessian metric or Hessian manifold, familiar in information geometry and convex geometry. It would strengthen the paper to cite standard sources on Hessian structures (e.g. Amari–Nagaoka’s Methods of Information Geometry, Shima’s Geometry of Hessian Structures) and explicitly note that the phase-space seam metric is a flat Hessian metric. For example, one could add a sentence like: “By definition this construction makes 
-(
-𝑅
-2
-𝑑
-,
-𝑔
-)
-(R
-2d
-,g) into a Hessian manifold (a flat affine manifold with metric given locally by the Hessian of a potential function).” This ties the work to the well-developed theory of Hessian geometries (e.g. Amari–Nagaoka, Shima).
+Here is my thorough review. I found several issues spanning mathematical errors, notation inconsistencies, prose/grammar, and LaTeX formatting.
 
-Relation to Information Geometry: The remark that the Hessian of a log-density is the observed Fisher information is good. One might cite a standard statistics text or review of information geometry to support this link. For instance, Amari–Nagaoka (2000) note that for an exponential family the Fisher metric arises as the Hessian of the log-partition function. The text already references Rao (1945) and Amari–Nagaoka, which is appropriate. (If space permits, the explicit formula from the slides could be summarized: “In an exponential family the Fisher metric is the Hessian of the log-partition potential,” as a known example.)
+---
 
-Quantum Phase-Space Context: The motivation via Husimi 
-𝑄
-Q-functions is interesting. It may help readers to mention explicitly the concept of quantum blobs or symplectic capacity from quantum mechanics. De Gosson’s work defines quantum blobs as minimal symplectic-area ellipsoids consistent with the uncertainty principle. In particular, “quantum blobs are the smallest phase-space units compatible with the uncertainty principle, invariant under symplectic transformations.” This is directly related to the minimal-area ellipsoid of radius 
-ℏ
-ℏ
-	​
+## Critical Mathematical Errors
 
- (area 
-𝜋
-ℏ
-πℏ) often used in phase-space quantum mechanics. It could be worth mentioning that in this language, the minimal-area bound 
-𝐴
-≥
-𝜋
-ℏ
-/
-2
-A≥πℏ/2 (per mode) is equivalent to the quantum blob bound (up to conventions). This connection would place the assumption 5.1 in context and highlight how symplectic geometry enters. (For example: “Indeed, de Gosson’s “quantum blobs” – minimal symplectic ellipsoids of area 
-𝜋
-ℏ
-πℏ – represent the level sets of Gaussian coherent states. Our minimal-area assumption is thus a phase-space analogue of that quantum principle.”)
+### 1. Spurious identity in Section 8 (Non-Gaussianity Witness)
 
-Integral Geometry and Volume Expansions: Theorem 3.1 (invariant first variation) is reminiscent of classical results in integral geometry (tube formulas, curvature integrals, Kac–Rice) for small-volume expansions. For example, Weyl’s tube formula expresses the volume of a small parallel neighborhood in terms of mean curvature integrals. Similarly, Jubin (2020) developed general formulas for intrinsic volumes of sublevel sets of smooth functions. It would strengthen the paper to cite these ideas: e.g. Jubin’s work describes how volumes of sublevel sets can be written in terms of integrals of curvature invariants. One could add: “This leading-order invariance is consistent with known integral-geometry formulas. For instance, in flat space the tube formula implies that only the full trace of the Hessian enters the first correction to small-volume growth. Jubin (arXiv 2019) provides a general framework (via Kac–Rice formulas) for volumes of excursion sets of functions, of which our result is a simple flat-space case.” Here [31†L55-L61] (from Jubin) could be cited to connect to Weyl’s and Minkowski’s formulas.
+At phase-space.tex, the display chain reads:
 
-Volume of Generalized Ellipsoids: The paper could note that sublevel sets of higher-degree polynomials are a topic of interest in convex geometry and optimization (sometimes called “generalized ellipsoids”). For instance, recent work has studied sublevel sets of homogeneous convex polynomials (generalized 
-ℓ
-𝑝
-ℓ
-p
-	​
+$$K_4^{\text{full}} = K_4^{\text{diag}} + 2\lambda c = 2K_4^{\text{full}} - K_4^{\text{diag}}$$
 
--balls) and their volume/computational properties. While a full literature review is beyond scope, a reference to e.g. Ahmadi et al. (2024) on “generalized ellipsoids” might be mentioned for context (they characterize when sublevel sets of degree-
-𝑑
-d polynomials can be represented as convex bodies in certain cones). If nothing else, a short comment like “In convex geometry, sublevel sets of quartic forms are known as generalized ellipsoids of degree 2. Our expansion shows the first correction to their volume, complementing works on convexity and volume of such sets.” would link to known results. (No specific citation is required here unless there is a direct formula to compare.)
+The second equality is **wrong**. $K_4^{\text{full}} = \lambda(a{+}b{+}2c)$ while $2K_4^{\text{full}} - K_4^{\text{diag}} = \lambda(a{+}b{+}4c)$. These differ by $2\lambda c$. The final implication $\lambda c = (K_4^{\text{full}} - K_4^{\text{diag}})/2$ is correct on its own — the middle term `= 2K_4^{full} - K_4^{diag}` should be deleted.
 
-Higher-Order Jets: A natural extension is to consider jets beyond 4th order. Theorem 3.1 suggests a pattern: for an even-degree 
-2
-𝑘
-2k jet, the first-order change in volume will involve only the unique O(n)-invariant contraction of the 
-2
-𝑘
-2k-tensor. One could remark this explicitly as a conjecture: “By the same spherical-integration argument, the first correction from a general 
-2
-𝑘
-2k-jet will depend only on the 
-𝑂
-(
-𝑛
-)
-O(n)-scalar \mathrm{Tr}\,^{}\mathrm{Tr}\,T^{(2k)}. This suggests a hierarchy of non-Gaussian corrections at each even order, generalizing (5.3).” It may also help to note the known fact that the integral of 
-𝑛
-𝑖
-𝑛
-𝑗
-𝑛
-𝑘
-𝑛
-𝑙
-𝑛
-𝑚
-𝑛
-𝑝
-n
-i
-	​
+### 2. Wrong identity in Proposition 6.1
 
-n
-j
-	​
+At phase-space.tex, the Proposition states:
 
-n
-k
-	​
+$$3(a+b) - 2\sqrt{ab} = (\sqrt{a}+\sqrt{b})^2 + (\sqrt{a}-\sqrt{b})^2 + (a+b)$$
 
-n
-l
-	​
+The **RHS evaluates to** $2(a+b) + (a+b) = 3(a+b)$, which is not equal to $3(a+b) - 2\sqrt{ab}$. The identity is off by $-2\sqrt{ab}$. The correct decomposition is, for example:
 
-n
-m
-	​
+$$3(a+b) - 2\sqrt{ab} = (\sqrt{a} - \sqrt{b})^2 + 2(a + b)$$
 
-n
-p
-	​
+Note: the *alternative* decomposition on the same line, $(\sqrt{3a}-\sqrt{b/3})^2 + 8b/3$, **is** correct, and so is the proof that follows in Proposition 6.1.
 
- over the sphere again picks out only the fully symmetric contractions (via Wick’s theorem or isotropic tensor integrals). A brief mention (with or without a formula) that “the same method yields that only the total trace of the 6th-derivative tensor enters at 
-𝑂
-(
-𝜀
-3
-)
-O(ε
-3
-), etc.” would indicate the generality of the result.
+### 3. Kerr example: convention mismatch and arithmetic error
 
-Multimode (d>1) Details: Section 8 outlines the higher-dimensional case. It might be worth expanding slightly or giving a concrete example. For instance, in 
-𝑑
->
-1
-d>1 one can have cross-terms coupling different modes (like 
-𝑥
-1
-2
-𝑝
-2
-2
-x
-1
-2
-	​
+The Kerr section ([lines 1048–1068](phase-space.tex#L1048-L1068)) defines the quartic seam as:
 
-p
-2
-2
-	​
+$$s_4 = \tfrac{u^2{+}v^2}{2} + \lambda\bigl(a\,u^4 + b\,v^4 + c\,u^2v^2\bigr), \quad a=\tfrac14,\; b=\tfrac14,\; c=\tfrac12$$
 
-), which would contribute to 
-𝑇
-𝑖
-𝑗
-𝑘
-𝑙
-T
-ijkl
-	​
+This is a **different convention** from the general form $s_4 = \frac{u^2+v^2}{2} + \frac{\lambda}{4}(au^4 + bv^4 + 2cu^2v^2)$ used everywhere else. In the general convention, the isotropic Kerr case corresponds to $a=b=c=1$, giving:
 
- with new index patterns. The text could note that the angular integrals on 
-𝑆
-2
-𝑑
-−
-1
-S
-2d−1
- again pick out only double traces of 
-𝑇
-𝑖
-𝑗
-𝑘
-𝑙
-T
-ijkl
-	​
+$$\mathcal{W}_4 = \frac{\lambda(3+3+2)}{16} = \frac{\lambda}{2}$$
 
-, as in (3.12). Perhaps add a sentence like: “In the multimode case, mixed quartic terms 
-𝑢
-𝑖
-2
-𝑣
-𝑗
-2
-u
-i
-2
-	​
+The paper claims $\mathcal{W}_4 = \lambda/8$, which is wrong by a factor of 4. Even plugging the Kerr-convention values directly into the formula gives $\lambda(3/4 + 3/4 + 1)/16 = 5\lambda/32 \neq \lambda/8$.
 
-v
-j
-2
-	​
+**Fix:** Either restate the Kerr coefficients in the general convention ($a=b=c=1$, $\mathcal{W}_4 = \lambda/2$), or adapt the formula to the local convention.
 
- (with 
-𝑖
-≠
-𝑗
-i
-
-=j) appear; however, by 
-𝑂
-(
-2
-𝑑
-)
-O(2d)-symmetry their contributions to the first variation are again encoded in the total double-trace 
-𝑇
-~
-𝑖
-𝑖
-𝑗
-𝑗
-T
-iijj
-	​
+### 4. Kerr example: incorrect $\lambda$ identification
 
-. The ratio of coefficients (1/3) found in 2D persists in higher dimensions due to isotropy of the sphere (cf. Eq. (3.11)).” One could cite a standard formula for the 4th moments on 
-𝑆
-𝑛
-−
-1
-S
-n−1
- in general (analogous to (3.11) but for arbitrary 
-𝑛
-n), although that is elementary to derive.
+The paper states $\lambda = \beta\kappa$. Explicitly working through the scaling $u = x/\sigma_x$, $v = p/\sigma_p$ with $\sigma_x^2 = 1/(\beta m\omega^2)$, $\sigma_p^2 = m/\beta$, one finds:
 
-Visual Illustration: A figure could help readers. For example, a contour plot of a sample quartic seam sublevel set (in normalized 
-𝑢
-,
-𝑣
-u,v coordinates) would illustrate how the level set deviates from an ellipse. A suggestion would be: “It would be illuminating to include a plot of 
-{
-𝑠
-4
-(
-𝑢
-,
-𝑣
-)
-=
-1
-/
-2
-}
-{s
-4
-	​
+$$p^2 + m^2\omega^2 x^2 = \frac{m}{\beta}(u^2+v^2)$$
 
-(u,v)=1/2} for representative parameters, showing the quadratic ellipse and its quartic perturbation.” If the journal allows it, a colored contour or filled region (as in a computational figure) could appear in the quartic section. (This is optional, but a well-labeled figure like “Figure: Sublevel set of 
-𝑠
-4
-s
-4
-	​
+so the quartic coefficient in scaled variables is $\kappa m^2/(4\beta)$, giving $\lambda = \kappa m^2/\beta$ (in the general convention), **not** $\lambda = \beta\kappa$. These agree only if $m = \beta$ in appropriate units.
 
- in the 
-𝑢
-,
-𝑣
-u,v plane, showing the effect of the 
-𝑢
-4
-u
-4
- and 
-𝑢
-2
-𝑣
-2
-u
-2
-v
-2
- terms, which shrink the area relative to the circle.” would add visual clarity.)
+### 5. Missing `+` sign in Kerr section
 
-Notation and Definitions: The paper uses jets, Hessians, etc., which is clear. A couple of small points: the phrase “
-𝑇
-𝑖
-𝑗
-𝑘
-𝑙
-T
-ijkl
-	​
+At phase-space.tex:
 
- counts with multiplicity 6 when fully symmetrised” might confuse some readers; it could be phrased as “note 
-𝑇
-𝑥
-𝑥
-𝑝
-𝑝
-T
-xxpp
-	​
+```tex
+s_4=\tfrac{1}{2}(u^2+v^2)\tfrac{\lambda}{4}(u^2+v^2)^2
+```
 
- appears in 6 distinct index permutations” or similar. Also, the use of “
-𝑂
-(
-𝑛
-)
-O(n)-scalar contraction” is apt but could be more explicit (e.g. “unique scalar invariant under orthogonal transformations”). These are minor wording suggestions.
+There is a **missing `+`** between the two terms.
 
-References: The bibliography is light. In addition to suggestions above, consider citing Amari & Nagaoka (2000, which is already cited) for general info geometry, and de Gosson (e.g. his book “Symplectic Geometry and Quantum Mechanics” or “Phase Space Quantization”) for quantum blobs/symplectic perspective. If available, an explicit reference on the volume of general quartic level sets (perhaps in convex geometry or polynomial optimization literature) could be added, but this may be hard to find. The generalized ellipsoids paper [10] (Ahmadi et al., 2025) is quite recent and relevant but not essential to cite unless one wants to link to optimization; it is more about algorithmic tractability of such sets.
+---
 
-Additional Extensions: The conclusion mentions “curved-space extensions” and a variational interpretation. These are intriguing; one could explicitly suggest as future work to relate the Hessian metric 
-𝑔
-g to the symplectic form to get a Kähler structure, or to consider quantum state manifolds with curvature. Another trivial extension is to consider odd-order jets or asymmetries, but level sets of odd functions are unbounded so less directly applicable.
+## Notation / Consistency Issues
 
-In summary, the technical content of the paper is correct and novel. The key improvement is to situate it in the broader literature: mention Hessian manifold theory, quantum blobs, and classical integral-geometry results. Adding a figure and clarifying some definitions would improve readability. These additions would not change the main theorems but would help readers appreciate the significance and potential generalizations of the work.
+### 6. Abstract: single-mode vs. multi-mode mismatch
 
-Specific improvement suggestions:
+The abstract ([lines 38–43](phase-space.tex#L38-L43)) displays the seam in single-mode form ($x, p, \sigma_x, \sigma_p$) but then gives the volume as $\frac{\pi^d}{d!}\prod_i \sigma_{x_i}\sigma_{p_i}$, which is the multi-mode formula. Either display the multi-mode seam or give the single-mode volume ($\pi\sigma_x\sigma_p$ for $d=1$).
 
-In the Introduction, explicitly cite one or two sources on Hessian geometry (e.g. Amari–Nagaoka, Shima) and mention that the Hessian rule makes the phase space into a flat Hessian manifold.
+### 7. "Quadratic seam" vs. "diagonal quartic seam"
 
-When interpreting 
-exp
-⁡
-(
-−
-𝑠
-)
-exp(−s) as a quantum phase-space density, cite de Gosson on quantum blobs to motivate the area bound. Clarify the factor of 2 difference if any in conventions.
+At phase-space.tex:
 
-In Section 3, add a remark or citation that the spherical integrals of monomials (e.g. (3.11)) are standard (one could cite a formula from random matrix theory or spherical integrals, or just note “by isotropy of the sphere” as is done).
+> "The quadratic seam studied in earlier work corresponds to the restriction $a=b=1$, $c=0$"
 
-Possibly expand Section 8 a bit to mention how cross-mode quartic terms would appear, or at least point out that only their total trace enters first-order volume change.
+This should say "diagonal quartic seam" — setting $a=b=1$, $c=0$ still yields a quartic seam, not a quadratic one. The quadratic seam is obtained by $\lambda = 0$.
 
-Include a brief figure of the quartic sublevel set, for example by plotting 
-{
-(
-𝑢
-,
-𝑣
-)
-:
-𝑢
-2
-+
-𝑣
-2
-2
-+
-𝜆
-4
-(
-𝑎
-𝑢
-4
-+
-𝑏
-𝑣
-4
-+
-2
-𝑐
-𝑢
-2
-𝑣
-2
-)
-=
-1
-/
-2
-}
-{(u,v):
-2
-u
-2
-+v
-2
-	​
+### 8. "Earlier work" without a citation
 
-+
-4
-λ
-	​
+The same sentence references "earlier work" but provides no citation. Either cite it or rephrase (e.g., "the diagonal restriction").
 
-(au
-4
-+bv
-4
-+2cu
-2
-v
-2
-)=1/2}. A caption could explain the parameters and show area shrinkage visually.
+---
 
-In the Conclusion, one could add a final sentence tying back to quantum phase-space: e.g. “We leave for future work the explicit connection between this scalar-first geometry and symplectic invariants (quantum blobs) of phase-space distributions.”
+## Grammar / Prose Issues
 
-By making these connections and adding a figure, the paper will read not only as a self-contained calculation but as part of a larger story linking geometry, statistics, and quantum physics.
+### 9. Abstract: sentence fragment
 
-References used in this review: We relied on standard results and the cited papers for context: Amari–Nagaoka (2000) on Hessian metrics; Jubin (2020) on intrinsic volumes of sublevel sets; and de Gosson on quantum blobs. These sources can be cited or paraphrased in the text to support the suggested points.
+phase-space.tex:
+
+> "In particular, for the quadratic seam [...] with positive width parameters $\sigma_x,\sigma_p$. Its sublevel set..."
+
+The period after the displayed equation creates a fragment. The "In particular, for..." clause has no main verb. Suggested fix: "In particular, consider the quadratic seam [...] with positive width parameters $\sigma_x,\sigma_p$: its sublevel set $\{s \le 1/2\}$ is an ellipsoid..."
+
+### 10. Placeholder email address
+
+phase-space.tex: `lars@uptochange.com` — this is clearly a placeholder and should be replaced with an actual contact address before submission.
+
+### 11. `\date{\today}`
+
+phase-space.tex: This will render as the compilation date. For submission, you likely want a fixed date or no date (use `\date{}`).
+
+---
+
+## LaTeX / Formatting Issues
+
+### 12. Unused packages
+
+phase-space.tex: `tikz` and `tikzlibrary{shapes.geometric}` are loaded but never used. Remove them to keep the preamble clean.
+
+### 13. Double section separator
+
+Before the Kerr section ([lines 1033–1034](phase-space.tex#L1033-L1034)), there are two consecutive `%---` separator lines with nothing between them, unlike the single separator used elsewhere. Cosmetic but inconsistent.
+
+---
+
+## Summary of Fixes Needed
+
+| # | Severity | Location | Issue |
+|---|----------|----------|-------|
+| 1 | **High** | §8, L920 | Spurious wrong identity `= 2K_4^full - K_4^diag` |
+| 2 | **High** | Prop 6.1, L882 | Wrong algebraic identity (off by $-2\sqrt{ab}$) |
+| 3 | **High** | Kerr §, L1065 | $\mathcal{W}_4 = \lambda/8$ is wrong; convention mismatch |
+| 4 | **Medium** | Kerr §, L1054 | $\lambda = \beta\kappa$ likely wrong ($\lambda = \kappa m^2/\beta$) |
+| 5 | **Medium** | Kerr §, L1058 | Missing `+` sign |
+| 6 | **Medium** | Abstract, L38–43 | Single-mode / multi-mode notation mismatch |
+| 7 | **Low** | L313 | "Quadratic seam" should be "diagonal quartic seam" |
+| 8 | **Low** | L313 | "Earlier work" uncited |
+| 9 | **Low** | Abstract, L40 | Sentence fragment |
+| 10 | **Low** | L20 | Placeholder email |
+| 11 | **Low** | L21 | `\date{\today}` |
+| 12 | **Low** | L6–7 | Unused `tikz` packages |
+
+The core mathematical results (Theorems 4.1, 5.2, 7.1, the universality theorem 7.2, and all the angular integral / double-trace derivations) are **correct** and internally consistent. The errors are concentrated in the Kerr example section (convention mismatch) and two display-formula typos (Prop 6.1 identity, §8 chain). Want me to apply the fixes?
+
+---
+
+Actions: 
+
+1 - Fix 
+2 - Fix
+3 - Adapt Kerr to follow paper convention
+4 - Fix
+5 - Fix 
+6 - Fix to what is most natural
+7 - Fix
+8 - Remove reference to earlier work if possible
+9 - Fix
+10 - No fix, lars@uptochange.com is my address
+11 - Remove the date completely
+12 - Remove import

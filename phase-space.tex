@@ -61,9 +61,11 @@ models.
 
 Geometry is often presented as a structure postulated \emph{a priori}. Here we adopt the
 complementary viewpoint: begin with a base space and a real-valued scalar field (the
-\emph{seam}) and let an explicit local rule generate the geometric data. In this note we
-apply this scalar-first philosophy to classical phase space \(\mathbb{R}^{2d}\) equipped
-with the standard symplectic coordinates \((x,p)\).
+\emph{seam}) and let an explicit local rule generate the geometric data. We use the term
+``seam'' to evoke the stitching of local geometric data into a global fabric, while
+remaining compatible with the log-density/potential-function language of information
+geometry. In this note we apply this scalar-first philosophy to classical phase space
+\(\mathbb{R}^{2d}\) equipped with the standard symplectic coordinates \((x,p)\).
 
 From the viewpoint of information geometry, the central construction is Hessian: when a
 seam is interpreted as a negative log-density, its Hessian is the observed-information
@@ -656,8 +658,9 @@ By a linear change of variables \(y=Lz\) with \(L^T g L=I\), we may assume \(g=I
 Jacobian factor \(1/\sqrt{\det g}\) in Lebesgue volume; the tensor \(T\) transforms covariantly and the
 contraction \(\mathrm{Tr}_g\mathrm{Tr}_g(T)\) is invariant.
 
-With \(g=I\), write \(z=rn\) with \(n\in S^{n-1}\). The jet expansion gives
-For sufficiently small \(\varepsilon>0\), the sublevel set \(\{s\le \varepsilon\}\) is star-shaped about the origin, so its boundary can be written as \(\{r(n)\,n: n\in S^{n-1}\}\) for a smooth radial function \(r(n)>0\).
+For sufficiently small \(\varepsilon>0\), the sublevel set \(\{s\le \varepsilon\}\) is star-shaped about the
+origin, so its boundary can be written as \(\{r(n)\,n: n\in S^{n-1}\}\) for a smooth radial function
+\(r(n)>0\). With \(g=I\), write \(z=rn\) with \(n\in S^{n-1}\). The jet expansion gives
 \(s(rn)=\tfrac12 r^2+\tfrac1{24}r^4 T(n,n,n,n)+O(r^6)\). Solving \(s(rn)=\varepsilon\) perturbatively yields
 \(r(n)^2=2\varepsilon-\tfrac13\varepsilon^2 T(n,n,n,n)+O(\varepsilon^3)+O(\|T\|^2)\). Hence
 \(r(n)^n=(2\varepsilon)^{n/2}\left(1-\tfrac{n\varepsilon}{12}T(n,n,n,n)\right)+\cdots\). Using
@@ -1044,6 +1047,36 @@ Every sufficiently regular, strictly positive density on \(\mathbb{R}^{2d}\) may
 approximated (in an appropriate topology) by finite mixtures of quartic exponential
 models of the form \(\propto\exp(-s_4)\). The weighted scalar \eqref{eq:W4-from-scalars}
 would then provide an explicit non-Gaussianity measure for each component.
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+\section{A Concrete Physical Example: Weak Kerr-Type Nonlinearity}
+%------------------------------------------------------------------
+
+To ground the framework, consider a single-mode oscillator with a weak isotropic
+Kerr-type nonlinearity, modeled at the classical level by
+\[
+H(x,p)=\frac{p^2}{2m}+\frac{m\omega^2 x^2}{2}+\frac{\kappa}{4}\,(p^2+m^2\omega^2 x^2)^2,
+\]
+with \(\kappa>0\). A simple toy non-Gaussian phase-space density is the thermal
+ansatz \(\rho\propto\exp(-\beta H)\), or equivalently a seam
+\(s=\beta H\). In scaled variables \(u=x/\sigma_x\), \(v=p/\sigma_p\) with
+\(\sigma_x^2=1/(\beta m\omega^2)\) and \(\sigma_p^2=m/\beta\), this takes the
+quartic seam form
+\[
+s_4(u,v)=\frac{u^2+v^2}{2}+\lambda\Bigl(a\,u^4+b\,v^4+c\,u^2v^2\Bigr),
+\qquad \lambda=\beta\kappa,
+\]
+with the concrete coefficients
+\[
+a=\frac{1}{4},\qquad b=\frac{1}{4},\qquad c=\frac{1}{2}.
+\]
+This is the rotationally symmetric case \(s_4=\tfrac{1}{2}(u^2+v^2)
+\tfrac{\lambda}{4}(u^2+v^2)^2\), which is normalisable for all \(\lambda>0\)
+and yields a positive quartic correction \(\mathcal{W}_4=\lambda(3a+3b+2c)/16
+=\lambda/8\). The coefficients \(a,b,c\) thus have a direct physical
+interpretation as the relative strengths of the quartic self- and cross-kurtosis
+induced by the Kerr term.
 
 %------------------------------------------------------------------
 \section{Conclusion}

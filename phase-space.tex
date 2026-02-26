@@ -1,8 +1,29 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
-\usepackage{graphicx}
+\documentclass[%
+ jmp,
+ amsmath,amssymb,
+ reprint
+]{revtex4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
+\usepackage{amsfonts,amsthm}
 \usepackage{hyperref}
+
+%% AIP requests that the corresponding email be placed after the affiliations
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
 
 \newtheorem{definition}{Definition}[section]
 \newtheorem{proposition}{Proposition}[section]
@@ -12,55 +33,43 @@
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{assumption}{Assumption}[section]
 
-\title{Phase-Space Seams: Hessian Geometry and the Invariant First Variation of Quartic Sublevel Sets}
-\author{Lars R\"onnb\"ack \\
-        Stockholm University \\
-        \texttt{lars@uptochange.com}}
-\date{}
-
 \begin{document}
 
-\maketitle
+\title{Phase-Space Seams: Invariant Volume Corrections and Universal Positivity at All Even Jet Orders}
+
+\author{Lars R\"onnb\"ack}
+ \email{lars@uptochange.com}
+\affiliation{Stockholm University}
+
+\date{\today}
 
 \begin{abstract}
-We introduce \emph{phase-space seams}, a scalar-first framework in which a single
-real-valued scalar field \(s\) on \(\mathbb{R}^{2d}\) generates local geometric data (via a
-Hessian rule) and a family of sublevel sets.
-
-Our main general result is an invariant first-variation formula in \(\mathbb{R}^n\): to first order,
-the volume of small sublevel sets \(\{s\le \varepsilon\}\) depends on the quartic jet only through the
-unique \(O(n)\)-scalar contraction (the double trace) of the 4-jet tensor. For the quartic sublevel set
-\(\{s_4\le 1/2\}\) we also show a universality statement: normalisability of the model density
-\(\exp(-s_4)\) forces positivity of the corresponding first-order correction coefficient.
-
-In particular, consider the quadratic seam
-\[
-s(x,p) = \frac{x^2}{2\sigma_x^2} + \frac{p^2}{2\sigma_p^2},
-\]
-with positive width parameters \(\sigma_x,\sigma_p\): its sublevel set \(\{s\le 1/2\}\) is
-an ellipse with Lebesgue area \(\pi\sigma_x\sigma_p\)
-(for general \(d\), the volume is \(\frac{\pi^d}{d!}\prod_i\sigma_{x_i}\sigma_{p_i}\)).
-
-We then study \emph{quartic seams} obtained by retaining the full fourth-order Taylor jet,
-including the cross-term \(x^2p^2\). A coordinate-invariant 4-jet contraction must
-include all fourth-derivative components; the cross-coupling contributes with a
-coefficient \(1/8\), distinct from the diagonal coefficient \(3/16\), reflecting universal
-angular integrals.
-
-We extend the framework from the quartic to the sextic (6-th order) jet, computing
-explicit area corrections in \(d=1\), and prove a general first-variation formula for
-arbitrary even-order \(2k\)-jets in \(\mathbb{R}^n\). We then establish universality of
-positive corrections at all even orders: for any non-trivial normalisable \(2k\)-jet
-perturbation, the \(k\)-fold trace of the jet tensor is strictly positive, so that
-non-Gaussianity always reduces sublevel-set volumes to first order. The proof is a
-single measure-theoretic step (spherical averaging of a non-negative function) and
-subsumes the quartic AM-GM argument as a special case.
-
-Finally, for the model density \(\rho\propto\exp(-s_4)\) we compute true second moments to
-first order in the quartic strength \(\lambda\), making explicit that the moments of
-\(\rho\) generally differ from the jet parameters \(\sigma_x,\sigma_p\) in non-Gaussian
-models.
+We introduce \emph{phase-space seams}, a scalar-first framework in which a real-valued
+scalar field $s$ on $\mathbb{R}^{2d}$ generates geometric data via a Hessian rule and a
+family of sublevel sets. Our main result is an invariant first-variation formula in
+$\mathbb{R}^n$: to first order, the volume of small sublevel sets $\{s\le\varepsilon\}$
+depends on the quartic jet only through the unique $O(n)$-scalar double trace of the
+4-jet tensor; normalisability of the model density $\exp(-s_4)$ forces positivity of the
+correction coefficient. For the quadratic seam
+$s(x,p)=x^2\!/(2\sigma_x^2)+p^2\!/(2\sigma_p^2)$ the sublevel set $\{s\le 1/2\}$ is an
+ellipse of Lebesgue area $\pi\sigma_x\sigma_p$. Retaining the full fourth-order Taylor
+jet, including the cross-term $x^2p^2$, yields a coordinate-invariant first-order area
+correction in which the cross-coupling contributes with coefficient $1/8$, distinct from
+the diagonal coefficient $3/16$, reflecting universal angular integrals. We extend the
+framework to the sextic jet and prove a general first-variation formula for arbitrary
+even-order $2k$-jets in $\mathbb{R}^n$. Universality holds at all even orders: for any
+non-trivial normalisable $2k$-jet perturbation the $k$-fold trace of the jet tensor is
+strictly positive, so non-Gaussianity always reduces sublevel-set volumes to first order;
+the proof is a single measure-theoretic step---spherical averaging of a non-negative
+function---subsuming the quartic AM--GM argument. Finally, for the quartic model density
+$\rho\propto\exp(-s_4)$ we compute true second moments to first order in the quartic
+strength~$\lambda$, making explicit that the jet parameters $\sigma_x$, $\sigma_p$
+generally differ from the moments of $\rho$ in non-Gaussian models.
 \end{abstract}
+
+\keywords{Hessian geometry, phase-space distributions, sublevel sets, non-Gaussianity, information geometry, uncertainty relations, jet calculus, spherical averaging}
+
+\maketitle
 
 %------------------------------------------------------------------
 \section{Introduction}
@@ -1392,6 +1401,24 @@ Assumption~\ref{assump:area}, not as a general strengthening of
 \(\Delta x\,\Delta p\ge\hbar/2\).
 
 %------------------------------------------------------------------
+\begin{acknowledgments}
+The author thanks the anonymous referees for their constructive comments.
+\end{acknowledgments}
+
+\section*{Author Declarations}
+
+\subsection*{Conflict of Interest}
+The author has no conflicts to disclose.
+
+\subsection*{Author Contributions}
+\textbf{Lars R\"onnb\"ack}: Conceptualization (lead); Formal analysis (lead); Investigation (lead); Methodology (lead); Writing -- original draft (lead); Writing -- review \& editing (lead).
+
+\noindent\textbf{Declaration of generative AI and AI-assisted technologies.}
+During the preparation of this work the author used Grok 4.2, GPT-5.2, Gemini 3.1 Pro, and Claude Sonnet 4.6 in order to draft early versions of the manuscript, brainstorm and outline the revised manuscript, polish the exposition, and respond to reviewer feedback. After using these tools/services, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article.
+
+\section*{Data Availability}
+This article presents theoretical results only; no datasets were generated or analysed. The data that support the findings of this study are available within the article itself.
+
 \begin{thebibliography}{99}
 
 \bibitem{Wigner1932}

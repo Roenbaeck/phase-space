@@ -3,8 +3,6 @@
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric}
 
 \newtheorem{definition}{Definition}[section]
 \newtheorem{proposition}{Proposition}[section]
@@ -18,7 +16,7 @@
 \author{Lars R\"onnb\"ack \\
         Stockholm University \\
         \texttt{lars@uptochange.com}}
-\date{\today}
+\date{}
 
 \begin{document}
 
@@ -35,13 +33,13 @@ unique \(O(n)\)-scalar contraction (the double trace) of the 4-jet tensor. For t
 \(\{s_4\le 1/2\}\) we also show a universality statement: normalisability of the model density
 \(\exp(-s_4)\) forces positivity of the corresponding first-order correction coefficient.
 
-In particular, for the quadratic seam
+In particular, consider the quadratic seam
 \[
 s(x,p) = \frac{x^2}{2\sigma_x^2} + \frac{p^2}{2\sigma_p^2},
 \]
-with positive width parameters \(\sigma_x,\sigma_p\). Its sublevel set \(\{s\le 1/2\}\) is
-an ellipsoid whose Lebesgue volume is
-\(\frac{\pi^d}{d!}\prod_i\sigma_{x_i}\sigma_{p_i}\).
+with positive width parameters \(\sigma_x,\sigma_p\): its sublevel set \(\{s\le 1/2\}\) is
+an ellipse with Lebesgue area \(\pi\sigma_x\sigma_p\)
+(for general \(d\), the volume is \(\frac{\pi^d}{d!}\prod_i\sigma_{x_i}\sigma_{p_i}\)).
 
 We then study \emph{quartic seams} obtained by retaining the full fourth-order Taylor jet,
 including the cross-term \(x^2p^2\). A coordinate-invariant 4-jet contraction must
@@ -307,7 +305,7 @@ s_4(x,p) = \frac{x^2}{2\sigma_x^2} + \frac{p^2}{2\sigma_p^2}
   \right).
 \label{eq:quartic-seam-full}
 \end{equation}
-The quadratic seam studied in earlier work corresponds to the restriction \(a = b = 1\),
+The diagonal quartic seam corresponds to the restriction \(a = b = 1\),
 \(c = 0\), with \(\lambda = \lambda_{\text{diag}}\). The cross-coupling coefficient \(c\)
 controls the extent to which fourth-order fluctuations in \(x\) and \(p\) are
 correlated.
@@ -864,7 +862,7 @@ all normalisable \(c\) at the extremal value \(c = -\sqrt{ab}\), where it equals
 \begin{equation}
 (3a + 3b + 2c)\big|_{c=-\sqrt{ab}}
 = 3(a + b) - 2\sqrt{ab}
-= (\sqrt{a} + \sqrt{b})^2 + (\sqrt{a} - \sqrt{b})^2 + (a+b) > 0.
+= (\sqrt{a} - \sqrt{b})^2 + 2(a + b) > 0.
 \label{eq:extremal-correction}
 \end{equation}
 Equivalently, \(3a + 3b - 2\sqrt{ab} = (\sqrt{3a} - \sqrt{b/3})^2 +
@@ -915,7 +913,6 @@ where \(K_4^{\text{diag}} = \lambda(a+b)\) is the diagonal 4-jet scalar. The ful
 \(K_4^{\text{diag}}\):
 \[
 K_4^{\text{full}} = K_4^{\text{diag}} + 2\lambda c
-= 2K_4^{\text{full}} - K_4^{\text{diag}}
 \quad\Longrightarrow\quad
 \lambda c = \frac{K_4^{\text{full}} - K_4^{\text{diag}}}{2}.
 \]
@@ -1049,7 +1046,6 @@ models of the form \(\propto\exp(-s_4)\). The weighted scalar \eqref{eq:W4-from-
 would then provide an explicit non-Gaussianity measure for each component.
 
 %------------------------------------------------------------------
-%------------------------------------------------------------------
 \section{A Concrete Physical Example: Weak Kerr-Type Nonlinearity}
 %------------------------------------------------------------------
 
@@ -1064,17 +1060,17 @@ ansatz \(\rho\propto\exp(-\beta H)\), or equivalently a seam
 \(\sigma_x^2=1/(\beta m\omega^2)\) and \(\sigma_p^2=m/\beta\), this takes the
 quartic seam form
 \[
-s_4(u,v)=\frac{u^2+v^2}{2}+\lambda\Bigl(a\,u^4+b\,v^4+c\,u^2v^2\Bigr),
-\qquad \lambda=\beta\kappa,
+s_4(u,v)=\frac{u^2+v^2}{2}+\frac{\lambda}{4}\bigl(u^4+v^4+2u^2v^2\bigr),
+\qquad \lambda=\frac{\kappa m^2}{\beta},
 \]
 with the concrete coefficients
 \[
-a=\frac{1}{4},\qquad b=\frac{1}{4},\qquad c=\frac{1}{2}.
+a=1,\qquad b=1,\qquad c=1.
 \]
 This is the rotationally symmetric case \(s_4=\tfrac{1}{2}(u^2+v^2)
-\tfrac{\lambda}{4}(u^2+v^2)^2\), which is normalisable for all \(\lambda>0\)
-and yields a positive quartic correction \(\mathcal{W}_4=\lambda(3a+3b+2c)/16
-=\lambda/8\). The coefficients \(a,b,c\) thus have a direct physical
++\tfrac{\lambda}{4}(u^2+v^2)^2\), which is normalisable for all \(\lambda>0\)
+and yields a positive quartic correction \(\mathcal{W}_4=\lambda(3+3+2)/16
+=\lambda/2\). The coefficients \(a,b,c\) thus have a direct physical
 interpretation as the relative strengths of the quartic self- and cross-kurtosis
 induced by the Kerr term.
 

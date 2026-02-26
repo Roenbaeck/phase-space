@@ -47,6 +47,15 @@ include all fourth-derivative components; the cross-coupling contributes with a
 coefficient \(1/8\), distinct from the diagonal coefficient \(3/16\), reflecting universal
 angular integrals.
 
+We extend the framework from the quartic to the sextic (6-th order) jet, computing
+explicit area corrections in \(d=1\), and prove a general first-variation formula for
+arbitrary even-order \(2k\)-jets in \(\mathbb{R}^n\). We then establish universality of
+positive corrections at all even orders: for any non-trivial normalisable \(2k\)-jet
+perturbation, the \(k\)-fold trace of the jet tensor is strictly positive, so that
+non-Gaussianity always reduces sublevel-set volumes to first order. The proof is a
+single measure-theoretic step (spherical averaging of a non-negative function) and
+subsumes the quartic AM-GM argument as a special case.
+
 Finally, for the model density \(\rho\propto\exp(-s_4)\) we compute true second moments to
 first order in the quartic strength \(\lambda\), making explicit that the moments of
 \(\rho\) generally differ from the jet parameters \(\sigma_x,\sigma_p\) in non-Gaussian
@@ -956,21 +965,25 @@ hypothesis (Assumption~\ref{assump:area}). If one prefers a purely geometric pre
 Jet & Geometric object & Width bound & Universality \\
 \hline
 2 & Hessian metric \(g\) & \(\sigma_x\sigma_p \ge \hbar/2\) & Always positive \\
-4 & \(T_{ijkl}\), weighted scalar \(\mathcal{W}_4\)
+4 & \(T_{ijkl}\), double trace \(\mathcal{W}_4\)
   & \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_4 + \cdots)\)
   & Positive iff normalisable \\
-\(2k\) & Symmetric \(2k\)-tensor, scalar \(\mathcal{W}_{2k}\)
+6 & \(S_{ijklmn}\), triple trace \(\mathcal{W}_6\)
+  & \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_6 + \cdots)\)
+  & Positive iff normalisable \\
+\(2k\) & Symmetric \(2k\)-tensor, \(k\)-fold trace \(\mathcal{W}_{2k}\)
   & \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_{2k} + \cdots)\)
-  & Conjectured positive \\
+  & Positive iff normalisable \\
 \hline
 \end{tabular}
 \end{center}
 \medskip
 
 At the fourth-order level the universality of positive corrections follows from the
-AM-GM inequality and the normalisability constraint. We conjecture that analogous
-positivity statements hold at every even order \(2k\), with the relevant physical
-constraint being normalisability of \(\exp(-s_{2k})\) at that order.
+AM-GM inequality and the normalisability constraint (Theorem~\ref{thm:universality}).
+The general statement --- that normalisability forces positivity at every even order
+\(2k\) --- is established in Theorem~\ref{thm:universality-all-orders} via a
+spherical-averaging argument that subsumes the quartic AM-GM proof as a special case.
 
 %------------------------------------------------------------------
 \section{Multi-Mode Extension}
@@ -1016,6 +1029,243 @@ normalisability of a model density \(\propto\exp(-s)\) with a strictly positive 
 \(\int_{S^{2d-1}}\widetilde T(n,n,n,n)\,d\Omega\ge 0\). By \eqref{eq:sphere-4-moment-Sn}, this is equivalent to
 \(\widetilde T_{iijj}\ge 0\), hence \(\mathcal{W}_4^{(d)}\ge 0\). Moreover, if \(\widetilde T(n,n,n,n)\) is not
 identically zero on the sphere then the inequality is strict.
+\end{remark}
+
+%------------------------------------------------------------------
+\section{The Sextic Jet: Extending the Hierarchy}
+\label{sec:sextic}
+%------------------------------------------------------------------
+
+The quartic computation of Section~\ref{sec:fourjet} extracted the first-order sublevel-set
+correction from the 4-jet. We now carry out the analogous computation for the \emph{6-jet},
+establishing the next level of the hierarchy announced in Section~\ref{sec:hierarchy}.
+As before, we give explicit formulas in \(d=1\) and then state the coordinate-free result
+in arbitrary dimension.
+
+%------------------------------------------------------------------
+\subsection{The Pure Sextic Seam in Dimension \texorpdfstring{$d=1$}{d=1}}
+\label{subsec:sextic-seam}
+%------------------------------------------------------------------
+
+In normalised coordinates \(u=x/\sigma_x\), \(v=p/\sigma_p\), define the \emph{pure sextic
+seam} (with vanishing quartic jet, for clarity; combined effects are additive at leading
+order):
+\begin{equation}
+s_6(u,v) = \frac{u^2+v^2}{2}
+  + \frac{\mu}{6}\bigl(\alpha\,u^6 + \beta\,v^6
+    + 3\gamma\,u^4 v^2 + 3\delta\,u^2 v^4\bigr),
+\label{eq:sextic-seam}
+\end{equation}
+where \(\alpha,\beta\ge 0\) and \(\gamma,\delta\in\mathbb{R}\) are dimensionless shape
+parameters and \(\mu>0\) sets the overall strength of the sextic correction. In polar
+coordinates \(u=r\cos\theta\), \(v=r\sin\theta\), this becomes
+\begin{equation}
+s_6 = \frac{r^2}{2} + \frac{\mu}{6}\,r^6\,G(\theta),
+\label{eq:sextic-polar}
+\end{equation}
+where
+\begin{equation}
+G(\theta) := \alpha\cos^6\theta + \beta\sin^6\theta
+  + 3\gamma\cos^4\theta\sin^2\theta + 3\delta\cos^2\theta\sin^4\theta.
+\label{eq:G-def}
+\end{equation}
+
+%------------------------------------------------------------------
+\subsection{Sextic Angular Integrals and Area Correction}
+\label{subsec:sextic-area}
+%------------------------------------------------------------------
+
+The four angular integrals needed are:
+\begin{align}
+\int_0^{2\pi}\cos^6\theta\,d\theta
+  &= \int_0^{2\pi}\sin^6\theta\,d\theta = \frac{5\pi}{8},
+\label{eq:int-sextic-diag}\\
+\int_0^{2\pi}\cos^4\theta\sin^2\theta\,d\theta
+  &= \int_0^{2\pi}\cos^2\theta\sin^4\theta\,d\theta = \frac{\pi}{8}.
+\label{eq:int-sextic-cross}
+\end{align}
+The ratio of cross to diagonal integrals is \(1/5\), compared with \(1/3\) at quartic
+order~\eqref{eq:int-diag}--\eqref{eq:int-cross}. Both are instances of a general
+pattern: at order \(2k\), the ratio is \(1/(2k-1)\).
+
+Therefore,
+\begin{equation}
+\int_0^{2\pi}G(\theta)\,d\theta
+= \frac{\pi}{8}\bigl(5\alpha + 5\beta + 3\gamma + 3\delta\bigr).
+\label{eq:G-integral}
+\end{equation}
+
+The boundary of \(\{s_6=1/2\}\) satisfies
+\(\tfrac{r^2}{2}+\tfrac{\mu}{6}r^6 G(\theta)=\tfrac12\). Solving perturbatively gives
+\begin{equation}
+r^2(\theta) = 1 - \frac{\mu}{3}\,G(\theta) + O(\mu^2).
+\label{eq:r2-sextic}
+\end{equation}
+
+The area in normalised coordinates is therefore
+\begin{align}
+A_{uv} &= \frac{1}{2}\int_0^{2\pi}r^2(\theta)\,d\theta
+= \pi - \frac{\mu}{6}\cdot\frac{\pi}{8}(5\alpha+5\beta+3\gamma+3\delta) + O(\mu^2)
+\notag\\
+&= \pi\!\left(1 - \frac{\mu(5\alpha+5\beta+3\gamma+3\delta)}{48}\right) + O(\mu^2).
+\label{eq:sextic-area-normalised}
+\end{align}
+
+Restoring physical units:
+\begin{equation}
+\boxed{
+A(s_6) = \pi\sigma_x\sigma_p\!\left(1
+  - \frac{\mu(5\alpha+5\beta+3\gamma+3\delta)}{48}\right) + O(\mu^2).
+}
+\label{eq:sextic-area-physical}
+\end{equation}
+
+\begin{remark}[Angular-integral ratio \(1/5\) at sextic order]
+Each diagonal shape parameter \(\alpha\) or \(\beta\) contributes with the angular weight
+\(5\pi/8\), while each cross parameter \(\gamma\) or \(\delta\) contributes with \(\pi/8\).
+Their ratio of \(1/5\) is the sextic analogue of the quartic ratio \(1/3\) and reflects
+the universal spherical-geometry identity
+\(\int_0^{2\pi}\cos^4\theta\sin^2\theta\,d\theta \,/\,
+\int_0^{2\pi}\cos^6\theta\,d\theta = 1/5\).
+\end{remark}
+
+%------------------------------------------------------------------
+\subsection{Invariant First Variation at General Even Order}
+\label{subsec:general-first-variation}
+%------------------------------------------------------------------
+
+The quartic first variation (Theorem~\ref{thm:invariant-first-variation}) and the sextic
+computation above are special cases of a general first-variation formula for the pure
+\(2k\)-jet, valid in arbitrary dimension~\(n\).
+
+\begin{theorem}[First variation from the \(2k\)-jet]
+\label{thm:general-2k-variation}
+Let \(s:\mathbb{R}^n\to\mathbb{R}\) be \(C^{2k}\) near the origin with \(s(0)=0\),
+\(\nabla s(0)=0\), and positive definite quadratic jet
+\(g_{ij}=\partial_i\partial_j s(0)\). Assume all jets of order \(4,6,\ldots,2k-2\)
+vanish. Let \(P_{i_1\cdots i_{2k}}=\partial_{i_1}\cdots\partial_{i_{2k}}s(0)\) be the
+fully symmetric \(2k\)-jet tensor. Then for \(\varepsilon>0\) sufficiently small,
+\begin{equation}
+V(\varepsilon)
+= \frac{\omega_n}{n}\,\frac{(2\varepsilon)^{n/2}}{\sqrt{\det g}}
+\left(1
+  - \frac{\varepsilon^{k-1}}{2\,k!\,\prod_{j=1}^{k-1}(n+2j)}\,
+    \mathrm{Tr}_g^k(P)
+  + O(\varepsilon^k) + O(\|P\|^2)\right),
+\label{eq:general-2k-variation}
+\end{equation}
+where
+\(\mathrm{Tr}_g^k(P):=g^{i_1 i_2}g^{i_3 i_4}\cdots g^{i_{2k-1}i_{2k}}
+P_{i_1 i_2\cdots i_{2k}}\) is the \(k\)-fold trace with respect to \(g\).
+\end{theorem}
+
+\begin{proof}
+By a linear change of variables set \(g=I\) (at the cost of a Jacobian
+\(1/\sqrt{\det g}\)). Write \(z=rn\) with \(n\in S^{n-1}\). The jet expansion gives
+\(s(rn)=\tfrac12 r^2+\tfrac{1}{(2k)!}r^{2k}P(n,\ldots,n)\). Setting \(s=\varepsilon\)
+and solving perturbatively yields
+\[
+r^2 = 2\varepsilon\!\left(1 - \frac{2^{k-1}\varepsilon^{k-1}}{(2k)!}\,P(n,\ldots,n)
+  + O(\varepsilon^k) + O(\|P\|^2)\right).
+\]
+Hence
+\(r^n=(2\varepsilon)^{n/2}(1-\frac{n\,2^{k-1}\varepsilon^{k-1}}{2(2k)!}\,P(n,\ldots,n)
++\cdots)\), and integrating over \(S^{n-1}\) using the \(O(n)\)-invariant \(2k\)-th moment
+\begin{equation}
+\int_{S^{n-1}} P(n,\ldots,n)\,d\Omega
+= \frac{(2k-1)!!\;\omega_n}{\prod_{j=0}^{k-1}(n+2j)}\;\mathrm{Tr}^k(P)
+\label{eq:sphere-2k-moment}
+\end{equation}
+(which generalises~\eqref{eq:sphere-4-moment-Sn}) gives
+\eqref{eq:general-2k-variation} after simplification using
+\((2k-1)!!/(2k)!=1/(2^k k!)\).
+\end{proof}
+
+\begin{remark}[Recovering the quartic and sextic cases]
+For \(k=2\) (quartic) and \(n=2\) the coefficient becomes
+\(\varepsilon/(2\cdot 2\cdot 4) = \varepsilon/16\), and at \(\varepsilon=1/2\) this gives
+\(1/32\) times the double trace, recovering
+Theorem~\ref{thm:invariant-first-variation}. For \(k=3\) (sextic) and \(n=2\) the
+coefficient becomes \(\varepsilon^2/(2\cdot 6\cdot 4\cdot 6) = \varepsilon^2/288\), and
+at \(\varepsilon=1/2\) this gives \(1/1152\) times the triple trace, recovering
+\eqref{eq:sextic-area-normalised}.
+\end{remark}
+
+\begin{remark}[Angular-integral ratios at order \(2k\)]
+\label{rem:angular-ratios}
+In \(n=2\) dimensions, the ratio of the cross angular integral
+\(\int_0^{2\pi}\cos^{2k-2}\theta\sin^2\theta\,d\theta\) to the diagonal integral
+\(\int_0^{2\pi}\cos^{2k}\theta\,d\theta\) is \(1/(2k-1)\). For \(k=2\) this gives
+\(1/3\); for \(k=3\) it gives \(1/5\). This ratio is the geometric origin of the
+decreasing per-component weight of cross-coupling terms at higher jet orders.
+\end{remark}
+
+%------------------------------------------------------------------
+\section{Universality at All Even Orders}
+\label{sec:universality-all}
+%------------------------------------------------------------------
+
+We now resolve the conjecture stated in Section~\ref{sec:hierarchy}: normalisability of
+\(\exp(-s_{2k})\) forces a positive first-order correction at every even order \(2k\).
+The argument is a direct consequence of spherical averaging and requires no case analysis.
+
+\begin{theorem}[Universality at all even orders]
+\label{thm:universality-all-orders}
+Let \(H:\mathbb{R}^n\to\mathbb{R}\) be a homogeneous polynomial of degree \(2k\)
+(\(k\ge 1\)) that is non-negative: \(H(z)\ge 0\) for all \(z\in\mathbb{R}^n\), and not
+identically zero. Let \(P_{i_1\cdots i_{2k}}\) be the associated fully symmetric tensor
+(so \(H(z)=P_{i_1\cdots i_{2k}}z^{i_1}\cdots z^{i_{2k}}\)). Then for any positive
+definite metric \(g\),
+\begin{equation}
+\mathrm{Tr}_g^k(P) > 0.
+\label{eq:positive-multi-trace}
+\end{equation}
+Moreover, if \(H\ge 0\) and \(\mathrm{Tr}_g^k(P)=0\), then \(H\equiv 0\) and \(P=0\).
+\end{theorem}
+
+\begin{proof}
+By a linear change of coordinates set \(g=I\). The spherical \(2k\)-th moment formula
+\eqref{eq:sphere-2k-moment} gives
+\[
+\int_{S^{n-1}} H(n)\,d\Omega
+= \frac{(2k-1)!!\;\omega_n}{\prod_{j=0}^{k-1}(n+2j)}\;\mathrm{Tr}^k(P),
+\]
+where the prefactor is strictly positive. Since \(H\) is continuous, non-negative, and
+not identically zero on the compact set \(S^{n-1}\), its integral is strictly positive.
+Therefore \(\mathrm{Tr}^k(P) > 0\).
+
+For the rigidity statement: if \(\mathrm{Tr}^k(P)=0\) and \(H\ge 0\), then
+\(\int_{S^{n-1}} H(n)\,d\Omega = 0\), which forces \(H\equiv 0\) on \(S^{n-1}\) by
+continuity and non-negativity. Since \(H\) is homogeneous, \(H\equiv 0\) on all of
+\(\mathbb{R}^n\). By the polarisation identity for symmetric tensors, \(P=0\).
+\end{proof}
+
+\begin{corollary}[Resolution of the universality conjecture]
+\label{cor:universality-resolved}
+At every even order \(2k\ge 4\), let
+\(s_{2k}(z)=\tfrac12 g_{ij}z^iz^j + \tfrac{1}{(2k)!}P_{i_1\cdots i_{2k}}
+z^{i_1}\cdots z^{i_{2k}}\) be a seam whose model density \(\exp(-s_{2k})\) is
+normalisable and whose \(2k\)-jet does not vanish. Then the first-order correction
+coefficient \(\mathrm{Tr}_g^k(P)\) is strictly positive, and consequently sublevel-set
+volumes are strictly smaller than those of the quadratic seam.
+\end{corollary}
+
+\begin{proof}
+Normalisability of \(\exp(-s_{2k})\) requires the homogeneous degree-\(2k\) part
+\(H(z)=\tfrac{1}{(2k)!}P_{i_1\cdots i_{2k}}z^{i_1}\cdots z^{i_{2k}}\) to be
+non-negative for all \(z\): if \(H(z_0)<0\) for some direction \(z_0\), then
+\(s_{2k}(rz_0)\to -\infty\) as \(r\to\infty\), so \(\exp(-s_{2k})\) is not integrable.
+Apply Theorem~\ref{thm:universality-all-orders}.
+\end{proof}
+
+\begin{remark}[Relation to the quartic proof]
+At quartic order (\(k=2\), \(n=2\)) the normalisability constraint reduces to
+\(c\ge-\sqrt{ab}\), and the positivity of \(3a+3b+2c\) was established in
+Theorem~\ref{thm:universality} via the AM-GM inequality. That argument is a special case
+of the present proof: the AM-GM step verifies, by direct algebra, that
+\(\int_{S^1}Q(\cos\theta,\sin\theta)\,d\theta > 0\) whenever the quartic form \(Q\ge 0\)
+is non-trivial. The spherical-averaging argument replaces all such case-specific algebra
+with a single measure-theoretic step.
 \end{remark}
 
 %------------------------------------------------------------------
@@ -1111,13 +1361,25 @@ Equivalently, at fixed diagonal kurtosis, they furnish a canonical family of
 \item Under Assumption~\ref{assump:area}, the conditional width bound takes the explicit
 form \(\sigma_x\sigma_p \ge (\hbar/2)(1 + \mathcal{W}_4 + O(\lambda^2))\) with
 \(\mathcal{W}_4 > 0\) for all normalisable non-Gaussian seams.
+
+\item The framework extends beyond the quartic: a general first-variation formula
+(Theorem~\ref{thm:general-2k-variation}) shows that the first-order volume correction
+from any even \(2k\)-jet depends only on its \(k\)-fold trace. The ratio of cross to
+diagonal angular integrals at order \(2k\) is \(1/(2k-1)\) in \(d=1\) (giving \(1/3\)
+at quartic order and \(1/5\) at sextic order), a universal spherical-geometry invariant.
+
+\item Universality holds at all even orders
+(Theorem~\ref{thm:universality-all-orders}): normalisability of \(\exp(-s_{2k})\)
+forces the \(k\)-fold trace --- and hence the first-order volume correction --- to be
+strictly positive for any non-trivial \(2k\)-jet. The proof is a single
+measure-theoretic step that replaces the quartic-specific AM-GM argument.
 \end{enumerate}
 
 The immediate computational payoffs (convex inverse design and visual diagnostics) are
-ready for implementation using \(\mathcal{W}_4\) rather than the diagonal scalar. The
-sketched multi-mode extension suggests that the \(1:3\) ratio of cross to diagonal
-angular integrals is a dimension-independent geometric constant that will appear at every
-level of the jet hierarchy.
+ready for implementation using \(\mathcal{W}_4\) (or its higher-order analogues) rather
+than the diagonal scalar. The multi-mode extension confirms that the \(1:3\) ratio at
+quartic order is dimension-independent; at higher jet orders the corresponding ratios
+follow the pattern \(1/(2k-1)\) (Remark~\ref{rem:angular-ratios}).
 
 \paragraph{Caveat on physical interpretation.}
 For non-Gaussian seams, the width parameters \(\sigma_x,\sigma_p\) are not identical to
